@@ -31,7 +31,13 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      # Step 4: Deploy to Azure App Service
+      # Step 4: Log in to Azure
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+
+      # Step 5: Deploy to Azure App Service
       - name: Deploy to Azure
         uses: azure/webapps-deploy@v2
         with:
