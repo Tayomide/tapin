@@ -3,10 +3,10 @@ from flask import Flask, request
 
 app = Flask(__name__)
 
-@app.route("/github-webhook", methods=["POST"])
+@app.route("/github-webhook", methods=["GET","POST"])
 def github_webhook():
-  data = request.json
-  print(data)
+  # data = request.json
+  # print(data)
   # commit_messages = "\n".join(
   #   [commit["message"] for commit in data["commits"]]
   # )

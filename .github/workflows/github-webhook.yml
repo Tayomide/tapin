@@ -1,55 +1,66 @@
-name: Deploy Flask App via Zip Deploy
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# More GitHub Actions for Azure: https://github.com/Azure/actions
+# More info on Python, GitHub Actions, and Azure App Service: https://aka.ms/python-webapps-actions
+
+name: Build and deploy Python app to Azure Web App - github-webhook
 
 on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read #This is required for actions/checkout
+
+    defaults:
+      run:
+        working-directory: webhook  # Set working directory for all steps
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - name: Install zip and xmllint
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y zip libxml2-utils
+      - name: Set up Python version
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+        
+      # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
 
-      - name: Zip the Flask app folder
-        run: |
-          # Create a zip file named app.zip containing the 'webhook' folder
-          zip -r app.zip webhook
+      - name: Zip artifact for deployment
+        run: zip -r release.zip . -x 'venv/*'
 
-      - name: Parse Azure publish profile for Zip Deploy settings
-        id: parse_profile
-        run: |
-          # Save the publish profile from the secret into a file
-          echo "${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}" > publishProfile.xml
+      - name: Upload artifact for deployment jobs
+        uses: actions/upload-artifact@v4
+        with:
+          name: python-app
+          path: webhook/release.zip
 
-          # Extract the publishProfile node that uses ZipDeploy as the publishMethod.
-          # This simple approach assumes the publish profile XML is formatted consistently.
-          #
-          # Extract the publishUrl, userName, and userPWD values.
-          PUBLISH_URL=$(xmllint --xpath "string(//publishProfile[@publishMethod='ZipDeploy']/@publishUrl)" publishProfile.xml)
-          USER_NAME=$(xmllint --xpath "string(//publishProfile[@publishMethod='ZipDeploy']/@userName)" publishProfile.xml)
-          USER_PWD=$(xmllint --xpath "string(//publishProfile[@publishMethod='ZipDeploy']/@userPWD)" publishProfile.xml)
-          
-          echo "Publish URL: $PUBLISH_URL"
-          echo "User Name: $USER_NAME"
-          
-          # Set these as output variables for later steps.
-          echo "::set-output name=publish_url::$PUBLISH_URL"
-          echo "::set-output name=user_name::$USER_NAME"
-          echo "::set-output name=user_pwd::$USER_PWD"
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
 
-      - name: Deploy to Azure via Zip Deploy
-        run: |
-          # Use the outputs from the previous step.
-          echo "Deploying using URL: ${{ steps.parse_profile.outputs.publish_url }}"
-          curl -X POST -u "${{ steps.parse_profile.outputs.user_name }}:${{ steps.parse_profile.outputs.user_pwd }}" \
-            --data-binary @app.zip \
-            -H "Content-Type: application/zip" \
-            https://${{ steps.parse_profile.outputs.publish_url }}/api/zipdeploy
+    environment:
+      name: 'Production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+    
+    steps:
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v4
+        with:
+          name: python-app
+
+      - name: Unzip artifact for deployment
+        run: unzip release.zip
+
+      
+      - name: 'Deploy to Azure Web App'
+        uses: azure/webapps-deploy@v3
+        id: deploy-to-webapp
+        with:
+          app-name: 'github-webhook'
+          slot-name: 'Production'
+          publish-profile: ${{ secrets.AzureAppService_PublishProfile }}
