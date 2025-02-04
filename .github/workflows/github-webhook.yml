@@ -20,8 +20,8 @@ jobs:
 
       - name: Zip the Flask app folder
         run: |
-          # Create a zip file named app.zip containing the 'sefwfre' folder
-          zip -r app.zip sefwfre
+          # Create a zip file named app.zip containing the 'webhook' folder
+          zip -r app.zip webhook
 
       - name: Parse Azure publish profile for Zip Deploy settings
         id: parse_profile
