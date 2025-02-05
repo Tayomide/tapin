@@ -8,7 +8,7 @@ app = Flask(__name__)
 def index():
   return "Hello, World!"
 
-@app.route("/github-webhook", methods=["POST"])
+@app.route("/webhook/github", methods=["POST"])
 def github_webhook():
   data = request.json
   print(data)
