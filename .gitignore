@@ -15,7 +15,6 @@ crash.log
 # For built boxes
 *.box
 # Files, Folders, security keys, and Binaries to ignore
-
 *~
 *.vdi
 *.box
