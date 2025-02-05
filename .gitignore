@@ -39,4 +39,5 @@ id_ed25519*
 .Vagrantfile*
 
 .venv/
+.env
 __pycache__/
