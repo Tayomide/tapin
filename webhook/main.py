@@ -19,7 +19,7 @@ def github_webhook():
   #     json=basecamp_payload,
   #     headers=headers,
   # )
-  return "OK", 200
+  return "Testing webhook", 200
 
 if __name__ == "__main__":
   app.run(port=5000)
