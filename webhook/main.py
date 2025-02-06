@@ -31,6 +31,8 @@ def github_webhook():
 def send_discord_message(message):
   payload = {
     "content": message,
+    "username": "GitHub",
+    "avatar_url": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
   }
   requests.post(discord_webhook_url, json=payload)
 
