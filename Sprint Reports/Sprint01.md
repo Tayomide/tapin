@@ -1,4 +1,4 @@
-![kiosk](./images/WhatsApp Image 2025-02-06 at 11.29.25_d88cd1a7.jpg)
+![kiosk](./images/kiosk.jpg "")
 ### What we are working with now.
 
 #### Our goal is to automate this system through hawk IDs, entirely forgoing the keyboard and mouse. 
