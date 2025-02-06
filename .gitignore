@@ -15,7 +15,6 @@ crash.log
 # For built boxes
 *.box
 # Files, Folders, security keys, and Binaries to ignore
-
 *~
 *.vdi
 *.box
@@ -37,3 +36,10 @@ id_rsa*
 id_rsa.pub
 id_ed25519*
 .Vagrantfile*
+=======
+.Vagrantfile*
+
+.venv/
+.env
+__pycache__/
+
