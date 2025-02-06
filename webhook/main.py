@@ -35,9 +35,12 @@ def send_discord_message(message):
   requests.post(discord_webhook_url, json=payload)
 
 def handle_push_event(payload):
-  commit_messages = "\n".join(
-    [f"- [{commit["message"]}]({commit['url']})" for commit in payload["commits"]]
-  )
+  commit_messages = []
+  for commit in payload["commits"]:
+    original_message = commit["message"]
+    commit_message = original_message.split("\n")[0]
+    commit_messages.append(f"- [{commit_message}]({commit['url']})")
+  commit_messages = "\n".join(commit_messages)
   message = f"New GitHub commits:\n{commit_messages}\n" + f"sent by [{payload['sender']['login']}]({payload['sender']['html_url']})"
   send_discord_message(message)
 
