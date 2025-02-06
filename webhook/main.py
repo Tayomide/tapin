@@ -38,14 +38,14 @@ def handle_push_event(payload):
   commit_messages = "\n".join(
     [f"- [{commit["message"]}]({commit['url']})" for commit in payload["commits"]]
   )
-  message = f"New GitHub commits:\n{commit_messages}\n" + f"sent by [{payload['sender']['login']}]({payload['sender']['url']})"
+  message = f"New GitHub commits:\n{commit_messages}\n" + f"sent by [{payload['sender']['login']}]({payload['sender']['html_url']})"
   send_discord_message(message)
 
 def handle_pull_request_event(payload):
   if(payload["action"] == "opened"):
-    message = f"New GitHub pull request: [{payload['pull_request']['title']}]({payload['pull_request']['url']})\n" + f"opened by [{payload['sender']['login']}]({payload['sender']['url']})"
+    message = f"New GitHub pull request: [{payload['pull_request']['title']}]({payload['pull_request']['html_url']})\n" + f"opened by [{payload['sender']['login']}]({payload['sender']['html_url']})"
   elif(payload["action"] == "closed"):
-    message = f"GitHub pull request: [{payload['pull_request']['title']}]({payload['pull_request']['url']})\n" + f"merged by [{payload['pull_request']['merged_by']['login']}]({payload['pull_request']['merged_by']['url']})"
+    message = f"GitHub pull request: [{payload['pull_request']['title']}]({payload['pull_request']['html_url']})\n" + f"merged by [{payload['pull_request']['merged_by']['login']}]({payload['pull_request']['merged_by']['html_url']})"
 
   send_discord_message(message)
 
