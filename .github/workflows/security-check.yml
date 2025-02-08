@@ -31,5 +31,8 @@ jobs:
       # run: |
       #   pip install safety bandit
 
+    - name: Ensure script is executable
+      run: chmod +x ./scripts/lint_python_projects.sh
+
     - name: Run lint script
       run: ./scripts/lint_python_projects.sh
