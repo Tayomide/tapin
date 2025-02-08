@@ -31,20 +31,5 @@ jobs:
       # run: |
       #   pip install safety bandit
 
-    - name: Run Python security checks
-      run: |
-        pylint $(find . -path ./\.venv -prune -o -type f -name "*.py" -print) --indent-string='  '
-
-    # # Set up Node.js environment
-    # - name: Set up Node.js
-    #   uses: actions/setup-node@v3
-    #   with:
-    #     node-version: '18'
-
-    # - name: Install Node.js dependencies
-    #   run: npm install
-
-    # - name: Run JavaScript security checks
-    #   run: |
-    #     npx eslint .
-    #     npx snyk test
+    - name: Run lint script
+      run: ./scripts/lint_python_projects.sh
