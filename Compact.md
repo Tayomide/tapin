@@ -75,13 +75,13 @@ By signing below, we agree to uphold this Team Charter:
    **Email:** `JJarjourah@hawk.iit.edu`  
    **Date:** `02/03/2025`  
 
-2. **Name:** `____________________`  
-   **Email:** `____________________`  
-   **Date:** `____________________`  
+2. **Name:** `Kevin Alexis Aguilar`  
+   **Email:** `kaguilar4@hawk.iit.edu`  
+   **Date:** `02/03/2025`  
 
-3. **Name:** `____________________`  
-   **Email:** `____________________`  
-   **Date:** `____________________`  
+3. **Name:** `Tomiwa Ayomide Ibrahim`  
+   **Email:** `tibrahim@hawk.iit.edu`  
+   **Date:** `02/03/2025`  
 
 4. **Name:** `____________________`  
    **Email:** `____________________`  
