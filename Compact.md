@@ -85,7 +85,11 @@ By signing below, we agree to uphold this Team Charter:
 
 4. **Name:** `____________________`  
    **Email:** `____________________`  
-   **Date:** `____________________`  
+   **Date:** `____________________`
+
+5. **Name:** `Yawar Kamran`  
+   **Email:** `ykamran@hawk.iit.edu`  
+   **Date:** `02/10/2025`
 
 ---
 
