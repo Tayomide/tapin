@@ -37,11 +37,6 @@ Activate the virtual environment:
 ### 3. Install Dependencies
 Install the required dependencies for the project:
 ```bash
-pip install -r requirements.txt
-```
-
-If you are working on development, also install the dev dependencies:
-```bash
 pip install -r requirements-dev.txt
 ```
 
