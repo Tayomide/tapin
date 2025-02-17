@@ -21,17 +21,17 @@ cd server
 ### 2. Create a Virtual Environment
 To isolate dependencies, create a virtual environment:
 ```bash
-python -m venv venv
+python -m venv .venv
 ```
 
 Activate the virtual environment:
 - **Linux/macOS**:
   ```bash
-  source venv/bin/activate
+  source .venv/bin/activate
   ```
 - **Windows**:
   ```bash
-  venv\Scripts\activate
+  .venv\Scripts\activate
   ```
 
 ### 3. Install Dependencies
