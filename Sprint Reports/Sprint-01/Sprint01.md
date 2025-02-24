@@ -1,4 +1,4 @@
-![kiosk](./images/kiosk.jpg "")
+![kiosk](../images/kiosk.jpg "")
 ### What we are working with now.
 
 #### Our goal is to automate this system through hawk IDs, entirely forgoing the keyboard and mouse. 
@@ -13,4 +13,4 @@
 	- Sample Backend Python scripts ready and tested to interface with Airtable API.
 - Flow Diagrams and Sample Front End:
 	- Canva hosted sample front-end with interactable buttons: https://www.canva.com/design/DAGeFbEjV_E/QGq2TPO0KomwykRjKjQA3g/view?utm_content=DAGeFbEjV_E&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h1675321bf6
-	- Draft 1 Flow Diagram: [View PDF](./images/Application_Flowchart_v1-1.pdf)
+	- Draft 1 Flow Diagram: [View PDF](../images/Application_Flowchart_v1-1.pdf)

@@ -90,6 +90,11 @@ By signing below, we agree to uphold this Team Charter:
 5. **Name:** `Yawar Kamran`  
    **Email:** `ykamran@hawk.iit.edu`  
    **Date:** `02/10/2025`
+=======
+4. **Name:** `Evelyn Myers`  
+   **Email:** `emyers7@hawk.iit.edu`  
+   **Date:** `02/09/2025`  
+
 
 ---
 

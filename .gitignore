@@ -42,4 +42,5 @@ id_ed25519*
 .venv/
 .env
 __pycache__/
-
+node_modules/
+package-lock.json
