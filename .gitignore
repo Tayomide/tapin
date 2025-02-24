@@ -41,5 +41,7 @@ id_ed25519*
 
 .venv/
 .env
+!code/express-static-app/.env
 __pycache__/
-
+node_modules/
+package-lock.json
