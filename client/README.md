@@ -83,8 +83,10 @@ To create a new "Portfolio" page (`/portfolio`):
 ## Running the Frontend
 
 To view the application:
-1. Open the `/client/index.html` file in your browser.
-2. Use relative paths to navigate to new routes.
+1. cd to the client folder `cd client`
+2. Run `npm install`
+3. Run `npm run dev`
+4. Open the route on console in your web browser
 
 ---
 
