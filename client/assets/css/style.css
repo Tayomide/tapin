@@ -28,17 +28,7 @@ html, body {
   color: var(--accent-color);
   line-height: 1.4;
   display: flex;
-<<<<<<< Updated upstream
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  background-image: url('/assets/images/lab_background2.jpg'); /* Add the background image */
-  background-size: cover; /* Cover the entire background */
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Prevent the image from repeating */
-=======
   flex-direction: column;
->>>>>>> Stashed changes
 }
 
 /* --- Header --- */
