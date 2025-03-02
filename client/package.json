@@ -4,13 +4,19 @@
   "description": "Frontend for ITMT-430",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "chromedriver": "^133.0.1",
     "geckodriver": "^5.0.0",
-    "nightwatch": "^3.11.1"
+    "nightwatch": "^3.11.1",
+    "nodemon": "^3.1.9"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
   }
 }
