@@ -19,6 +19,47 @@ UI/UX Design: Jack
 IT Operations: Tomari
 
 
+## Tasks
+
+
+**Project Manager**
+
+* Assign tasks
+* Publish end of the week report discord
+  * State what tasks are finished
+  * Document the changes between Sprint-01 and Sprint-02
+* Develop Sprint-02 report
+
+
+**Developers**
+
+* Create schema in Airtable
+  * Create 5 simulated student records
+  * Strive for 3NF for tables when beneficial
+* One developer connect Airtable to Python
+* The other developer should transition the database from Airtable to SQL
+
+
+**UI/UX**
+
+* Develop the site pages
+  * homepage
+  * student login
+  * employee login
+  * check in complete
+* Integrate normalize css file (This gives you a true blank canvas to make the styling process easier)
+* Separate folders for CSS, HTML, and other assets (images).
+
+
+**IT Orchestration and Security**
+
+* Set up the server virtual machine
+  * If needed, refer to tutorial videos on the Sprint-02 section on Canvas
+* Identify what secrets we have.
+  * E.g. API keys
+* Connect back-end to database
+
+
 ## Site
 
 
@@ -35,11 +76,17 @@ The team decided to eliminate the admin login option, so now there's only employ
 When an employee wants to log in, they will insert their number and a PIN. Alongside, they can see the students who have logged in earlier.
 
 
+Maybe we shouldn't have the student logins displayed at the employee login, it is massive breach of privacy since any person can press on the employee button and see this data without needing to authenticate. We should also add some styling to the input fields.
+
+
 ![homepage-image](../images/v1_employee_login_manual.PNG)
 
 **Student Login Manual**
 
 If a student doesn't have a hawk ID on them, they can still log in by inserting their full name and hawk ID.
+
+
+We should add styling and spacing to the input fields to replace the default look.
 
 
 ![homepage-image](../images/V1_student_login_manual.PNG)
@@ -48,6 +95,9 @@ If a student doesn't have a hawk ID on them, they can still log in by inserting 
 **Check-in Complete**
 
 This screen pops up when the login was successful.
+
+
+We could possibly add a timer to this screen where if no one presses the go back home button, the page would go back automatically.
 
 
 ![homepage-image](../images/v1_training_compete.PNG)
