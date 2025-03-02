@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>IDEA Shop Employee Portal</title>
+    <link rel="stylesheet" href="../assets/css/style.css" />
+  </head>
+  <body>
+
+    <!-- Header -->
+    <header class="site-header">
+      <div class="header-content">
+        <div class="site-title">IDEA SHOP</div>
+      </div>
+    </header>
+
+    <!-- Hero / Banner -->
+    <section class="hero-banner">
+      <h1>Employee Check-In Management</h1>
+      <p>Manage student check-ins and view current attendance</p>
+    </section>
+
+    <!-- Main Content -->
+    <main class="kiosk-container">
+      <h2 class="emphasis">Employee Access</h2>
+      <p class="subtext">Please verify your credentials or manage the student list below.</p>
+
+      <!-- Example login form -->
+      <form>
+        <div>
+          <label for="empNumber" hidden>Employee Number</label>
+          <input
+            type="text"
+            id="empNumber"
+            name="empNumber"
+            placeholder="Employee Number"
+            required
+          />
+        </div>
+        <div>
+          <label for="empPin" hidden>Employee PIN</label>
+          <input
+            type="password"
+            id="empPin"
+            name="empPin"
+            placeholder="PIN"
+            required
+          />
+        </div>
+        <button type="submit" class="btn">Log In</button>
+      </form>
+
+      <!-- Example table of students (optional) -->
+      <div style="margin-top: 2rem;">
+        <h3>Checked-In Students</h3>
+        <table style="margin: 0 auto; border-collapse: collapse;">
+          <thead>
+            <tr>
+              <th style="border-bottom: 2px solid #ccc; padding: 0.5rem;">Name</th>
+              <th style="border-bottom: 2px solid #ccc; padding: 0.5rem;">A#</th>
+              <th style="border-bottom: 2px solid #ccc; padding: 0.5rem;">Check-In Time</th>
+            </tr>
+          </thead>
+          <tbody id="studentList">
+            <!-- Dynamically populated rows -->
+            <tr>
+              <td style="border-bottom: 1px solid #ccc; padding: 0.5rem;">John Doe</td>
+              <td style="border-bottom: 1px solid #ccc; padding: 0.5rem;">A12345678</td>
+              <td style="border-bottom: 1px solid #ccc; padding: 0.5rem;">9:15 AM</td>
+            </tr>
+            <!-- Add more rows as needed -->
+          </tbody>
+        </table>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <p>© 2025 Kaplan Institute Idea Shop. All rights reserved.</p>
+    </footer>
+
+    <!-- Optional: Link to an employee-specific script -->
+    <!-- <script src="./assets/js/employee.js"></script> -->
+  </body>
+</html>

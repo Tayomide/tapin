@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>IDEA Shop Student Check-In</title>
+    <!-- Reuse the same CSS to match the look & feel of index.html -->
+    <link rel="stylesheet" href="..\assets\css\style.css" />
+  </head>
+  <body>
+
+    <!-- Header -->
+    <header class="site-header">
+      <div class="header-content">
+        <div class="site-title">IDEA SHOP</div>
+      </div>
+    </header>
+
+    <!-- Hero / Banner -->
+    <section class="hero-banner">
+      <h1>Manual Student Check-In</h1>
+      <p>Please fill out the form below if you do not have your HawkID</p>
+    </section>
+
+    <!-- Main Content -->
+    <main class="kiosk-container">
+      <h2 class="emphasis">Student Information</h2>
+      <p class="subtext">Enter your name and A# to check in.</p>
+      <form>
+        <div>
+          <label for="studentName" hidden>Student Name</label>
+          <input
+            type="text"
+            id="studentName"
+            name="studentName"
+            placeholder="Full Name"
+            required
+          />
+        </div>
+        <div>
+          <label for="studentId" hidden>Student A#</label>
+          <input
+            type="text"
+            id="studentId"
+            name="studentId"
+            placeholder="A# (e.g., A12345678)"
+            required
+          />
+        </div>
+        <button type="submit" class="btn">Check In</button>
+      </form>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <p>© 2025 Kaplan Institute Idea Shop. All rights reserved.</p>
+    </footer>
+
+    <!-- Optional: Link to a student-specific script -->
+    <!-- <script src="./assets/js/student.js"></script> -->
+  </body>
+</html>

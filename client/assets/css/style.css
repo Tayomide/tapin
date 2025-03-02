@@ -1,0 +1,138 @@
+/* --- Reset / Box Sizing --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* --- Root Variables (Colors, Fonts, etc.) --- */
+:root {
+  --primary-color: #0fad73c1; /* Bold red for IIT branding */
+  --secondary-color: #ffffff;
+  --accent-color: #333333;
+  --background-color: #ffffff;
+  --header-height: 60px;
+  --max-width: 1200px; /* Typical max width for content */
+  
+}
+
+/* --- Global Styling --- */
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  background-image: url('../images/lab_background2.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: var(--accent-color);
+  line-height: 1.4;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- Header --- */
+.site-header {
+  background-color: var(--primary-color);
+  height: var(--header-height);
+  display: flex;
+  align-items: flex-start; /* Aligns content to the top */
+  justify-content: flex-start; /* Aligns content to the left */
+}
+
+.header-content {
+  width: 10%;
+  max-width: var(--max-width);
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: flex-start;
+}
+
+/* Enlarge the "IDEA SHOP" text, position it top-left */
+.site-title {
+  color: var(--secondary-color);
+  font-weight: bold;
+  font-size: 2rem;      /* Enlarge text */
+  text-transform: uppercase;
+}
+
+/* --- Hero / Banner --- */
+.hero-banner {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  text-align: center; 
+  padding: auto 1rem;
+}
+
+.hero-banner h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.hero-banner p {
+  font-size: 1.1rem;
+}
+
+/* --- Main Kiosk Container --- */
+.kiosk-container {
+  max-width: var(--max-width);
+  width: 100%;
+  margin: 10rem auto;
+  padding: 0 0.5rem;
+  text-align: center;
+  background-color: #ffffffd0;        /* White background */
+  border-radius: 8px;           /* Rounded corners */
+  padding: 1.5rem;                /* Padding for spacing */
+  margin-bottom: 1rem;          /* Spacing to separate from buttons */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* Subtle shadow */
+}
+
+
+.emphasis {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.subtext {
+  font-size: 1rem;
+  color: #555555;
+  margin-bottom: 2rem;
+}
+
+/* --- Buttons --- */
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.btn {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn:hover {
+  background-color: #990000; /* Slightly darker red */
+}
+
+/* --- Footer --- */
+.site-footer {
+  background-color: #f1f1f1;
+  text-align: center;
+  padding: 1rem 0;
+  margin-top: auto; /* Ensures footer is pushed to the bottom if content is short */
+}
+
+.site-footer p {
+  font-size: 0.9rem;
+  color: #666666;
+}
