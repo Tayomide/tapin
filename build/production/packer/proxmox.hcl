@@ -189,7 +189,7 @@ build {
   #############################################################################
 
   provisioner "file" {
-    source      = "../scripts/proxmox/jammy-services/node-exporter-consul-service.json"
+    source      = "../../../scripts/proxmox/jammy-services/node-exporter-consul-service.json"
     destination = "/home/vagrant/"
   }
 
@@ -199,7 +199,7 @@ build {
   #############################################################################
 
   provisioner "file" {
-    source      = "../scripts/proxmox/jammy-services/consul.conf"
+    source      = "../../../scripts/proxmox/jammy-services/consul.conf"
     destination = "/home/vagrant/"
   }
 
@@ -209,7 +209,7 @@ build {
   #############################################################################
 
   provisioner "file" {
-    source      = "../scripts/proxmox/jammy-services/node-exporter.service"
+    source      = "../../../scripts/proxmox/jammy-services/node-exporter.service"
     destination = "/home/vagrant/"
   }
 
@@ -221,7 +221,7 @@ build {
 
   provisioner "shell" {
     execute_command = "echo 'vagrant' | {{ .Vars }} sudo -E -S sh '{{ .Path }}'"
-    scripts         = ["../scripts/proxmox/core-jammy/post_install_prxmx-firewall-configuration.sh"]
+    scripts         = ["../../../scripts/proxmox/core-jammy/post_install_prxmx-firewall-configuration.sh"]
   }
 
   #############################################################################
@@ -231,10 +231,10 @@ build {
 
   provisioner "shell" {
     execute_command = "echo 'vagrant' | {{ .Vars }} sudo -E -S sh '{{ .Path }}'"
-    scripts = ["../scripts/proxmox/core-jammy/post_install_prxmx_ubuntu_2204.sh",
-      "../scripts/proxmox/core-jammy/post_install_prxmx_start-cloud-init.sh",
-      "../scripts/proxmox/core-jammy/post_install_prxmx_install_hashicorp_consul.sh",
-    "../scripts/proxmox/core-jammy/post_install_prxmx_update_dns_for_consul_service.sh"]
+    scripts = ["../../../scripts/proxmox/core-jammy/post_install_prxmx_ubuntu_2204.sh",
+      "../../../scripts/proxmox/core-jammy/post_install_prxmx_start-cloud-init.sh",
+      "../../../scripts/proxmox/core-jammy/post_install_prxmx_install_hashicorp_consul.sh",
+    "../../../scripts/proxmox/core-jammy/post_install_prxmx_update_dns_for_consul_service.sh"]
   }
 
   #############################################################################
@@ -245,7 +245,7 @@ build {
 
   provisioner "shell" {
     execute_command = "echo 'vagrant' | {{ .Vars }} sudo -E -S sh '{{ .Path }}'"
-    scripts         = ["../scripts/proxmox/core-jammy/post_install_change_consul_bind_interface.sh"]
+    scripts         = ["../../../scripts/proxmox/core-jammy/post_install_change_consul_bind_interface.sh"]
   }
 
   #############################################################################
@@ -256,7 +256,7 @@ build {
 
   provisioner "shell" {
     execute_command = "echo 'vagrant' | {{ .Vars }} sudo -E -S sh '{{ .Path }}'"
-    scripts         = ["../scripts/proxmox/core-jammy/post_install_update_dynamic_motd_message.sh"]
+    scripts         = ["../../../scripts/proxmox/core-jammy/post_install_update_dynamic_motd_message.sh"]
   }
 
   #############################################################################
@@ -265,7 +265,7 @@ build {
 
   provisioner "shell" {
     execute_command = "echo 'vagrant' | {{ .Vars }} sudo -E -S sh '{{ .Path }}'"
-    scripts         = ["../scripts/proxmox/core-jammy/post_install_prxmx_ubuntu_install-prometheus-node-exporter.sh"]
+    scripts         = ["../../../scripts/proxmox/core-jammy/post_install_prxmx_ubuntu_install-prometheus-node-exporter.sh"]
   }
 
   #############################################################################
@@ -276,21 +276,21 @@ build {
 
   provisioner "shell" {
     execute_command = "echo 'vagrant' | {{ .Vars }} sudo -E -S sh '{{ .Path }}'"
-    scripts         = ["../scripts/proxmox/three-tier/clone-team-repo.sh"]
+    scripts         = ["../../../scripts/proxmox/three-tier/clone-team-repo.sh"]
   }
 
   provisioner "shell" {
     execute_command = "echo 'vagrant' | {{ .Vars }} sudo -E -S sh '{{ .Path }}'"
-    scripts = ["../scripts/proxmox/three-tier/frontend/post_install_prxmx_frontend-firewall-open-ports.sh",
-      "../scripts/proxmox/three-tier/frontend/post_install_prxmx_frontend-webserver.sh",
-    "../scripts/proxmox/three-tier/frontend/application-start.sh"]
+    scripts = ["../../../scripts/proxmox/three-tier/frontend/post_install_prxmx_frontend-firewall-open-ports.sh",
+      "../../../scripts/proxmox/three-tier/frontend/post_install_prxmx_frontend-webserver.sh",
+    "../../../scripts/proxmox/three-tier/frontend/application-start.sh"]
     environment_vars = ["DBUSER=${local.DBUSER}", "DBPASS=${local.DBPASS}", "DATABASE=${local.DATABASE}", "FQDN=${local.FQDN}"]
     only             = ["proxmox-iso.frontend-webserver","proxmox-iso.frontend-webserver42"]
   }
 
   provisioner "shell" {
     execute_command = "echo 'vagrant' | {{ .Vars }} sudo -E -S sh '{{ .Path }}'"
-    scripts         = ["../scripts/proxmox/three-tier/cleanup.sh"]
+    scripts         = ["../../../scripts/proxmox/three-tier/cleanup.sh"]
   }
 
 }
