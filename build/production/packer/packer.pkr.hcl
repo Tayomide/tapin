@@ -421,7 +421,7 @@ build {
 
   provisioner "shell" {
     execute_command = "echo 'vagrant' | {{ .Vars }} sudo -E -S sh '{{ .Path }}'"
-    scripts = ["../../../scripts/proxmox/three-tier/database/post_install_prxmx_backend-firewall-open-ports.sh",
+    scripts = ["../../../scripts/proxmox/three-tier/database/post_install_prxmx_database-firewall-open-ports.sh",
     "../../../scripts/proxmox/three-tier/database/post_install_prxmx_database.sh"]
     environment_vars = ["DBUSER=${local.DBUSER}", "IPRANGE=${local.CONNECTIONFROMIPRANGE}", "DBPASS=${local.DBPASS}"]
     only             = ["proxmox-iso.database","proxmox-iso.database42"]
