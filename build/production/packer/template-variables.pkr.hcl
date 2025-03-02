@@ -94,7 +94,7 @@ variable "NUMBEROFCORES" {
 # This is the name of the Virtual Machine Template you want to create
 variable "frontend-VMNAME" {
   type    = string
-  default = ""
+  default = "team05m-prod-fe"
 }
 
 variable "iso_checksum" {
