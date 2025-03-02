@@ -97,6 +97,12 @@ variable "frontend-VMNAME" {
   default = "team05m-prod-fe"
 }
 
+# This is the name of the Virtual Machine Template you want to create
+variable "database-VMNAME" {
+  type    = string
+  default = "team05m-prod-db"
+}
+
 variable "iso_checksum" {
   type    = string
   default = "file:https://mirrors.edge.kernel.org/ubuntu-releases/22.04.5/SHA256SUMS"
@@ -115,4 +121,9 @@ variable "local_iso_name" {
 variable "FE-TAGS" {
   type = string
   default  = "frontend;team05m"
+}
+
+variable "DB-TAGS" {
+  type = string
+  default  = "backend;team05m"
 }
