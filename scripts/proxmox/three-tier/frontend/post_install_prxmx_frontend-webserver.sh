@@ -13,7 +13,7 @@ sudo -E bash nodesource_setup.sh
 sudo apt-get install -y nodejs
 
 # Change directory to the location of your JS code
-cd /home/vagrant/team-00/code/express-static-app/
+cd /home/vagrant/spring2025-team05/client/
 
 # Use NPM package manager to install needed dependecies to run our EJS app
 # https://github.com/motdotla/dotenv -- create a .env file to pass environment variables
@@ -37,7 +37,8 @@ sudo -u vagrant pm2 save
 # this is a hack to pass environment variables into the vm instances
 ###############################################################################
 
-sudo sed -i "s/FQDN=/FQDN=$FQDN/" /home/vagrant/team-00/code/express-static-app/.env
-sudo sed -i "s/DBUSER=/DBUSER=$DBUSER/" /home/vagrant/team-00/code/express-static-app/.env
-sudo sed -i "s/DBPASS=/DBPASS=$DBPASS/" /home/vagrant/team-00/code/express-static-app/.env
-sudo sed -i "s/DATABASE=/DATABASE=$DATABASE/" /home/vagrant/team-00/code/express-static-app/.env
+sudo sed -i "s/NODE_ENV=/NODE_ENV=production/" /home/vagrant/spring2025-team05/client/.env
+sudo sed -i "s/FQDN=/FQDN=$FQDN/" /home/vagrant/spring2025-team05/client/.env
+sudo sed -i "s/DBUSER=/DBUSER=$DBUSER/" /home/vagrant/spring2025-team05/client/.env
+sudo sed -i "s/DBPASS=/DBPASS=$DBPASS/" /home/vagrant/spring2025-team05/client/.env
+sudo sed -i "s/DATABASE=/DATABASE=$DATABASE/" /home/vagrant/spring2025-team05/client/.env

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd /home/vagrant/team-00/code/express-static-app/
+cd /home/vagrant/spring2025-team05/client/
 
 # run the npm install command to retrieve required express dependencies
 # this will retrieve all the NPM packages listed in the package.json file
