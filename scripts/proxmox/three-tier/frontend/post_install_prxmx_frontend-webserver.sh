@@ -31,6 +31,8 @@ sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -
 # restart them at boot
 sudo -u vagrant pm2 save
 
+cp .template-env .env
+
 ###############################################################################
 # Using Find and Replace via sed to add in the secrets to connect to MySQL
 # There is a .env file containing an empty template of secrets -- essentially
