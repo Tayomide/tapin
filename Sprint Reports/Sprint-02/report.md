@@ -21,7 +21,36 @@ IT Operations: Tomari
 
 ## Site
 
+
+**Home Page**
+
 The team decided to eliminate the admin login option, so now there's only employee and student logins. A student can log in by simply scanning their hawk ID. If they don't have it at their disposal, they can press the student login button to manually put in their information.
+
+
+![homepage-image](../images/v1-homepage.png)
+
+
+**Employee Login Manual**
+
+When an employee wants to log in, they will insert their number and a PIN. Alongside, they can see the students who have logged in earlier.
+
+
+![homepage-image](../images/v1_employee_login_manual.PNG)
+
+**Student Login Manual**
+
+If a student doesn't have a hawk ID on them, they can still log in by inserting their full name and hawk ID.
+
+
+![homepage-image](../images/V1_student_login_manual.PNG)
+
+
+**Check-in Complete**
+
+This screen pops up when the login was successful.
+
+
+![homepage-image](../images/v1_training_compete.PNG)
 
 
 ## Database
