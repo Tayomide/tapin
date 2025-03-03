@@ -134,7 +134,7 @@ variable "FE-TAGS" {
   default  = "frontend;team05m"
 }
 
-varible "BE-TAGS" {
+variable "BE-TAGS" {
   type = string
   default  = "backend;team05m"
 }
