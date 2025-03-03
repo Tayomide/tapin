@@ -129,7 +129,7 @@ resource "proxmox_vm_qemu" "backend" {
 
 output "proxmox_backend_ip_address_default" {
   description = "Current Public IP"
-  value       = proxmox_vm_qemu.backend-webserver.*.default_ipv4_address
+  value       = proxmox_vm_qemu.backend.*.default_ipv4_address
 }
 
 ###############################################################################
