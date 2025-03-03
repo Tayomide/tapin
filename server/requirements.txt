@@ -1,1 +1,2 @@
-pyairtable
+fastapi[standard]
+uvicorn
