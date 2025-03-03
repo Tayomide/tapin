@@ -23,7 +23,6 @@ IT Operations: Tomari
 
 
 **Project Manager**
-
 * Assign tasks
 * Publish end of the week report discord
   * State what tasks are finished
@@ -32,7 +31,6 @@ IT Operations: Tomari
 
 
 **Developers**
-
 * Create schema in Airtable
   * Create 5 simulated student records
   * Strive for 3NF for tables when beneficial
@@ -41,7 +39,6 @@ IT Operations: Tomari
 
 
 **UI/UX**
-
 * Develop the site pages
   * homepage
   * student login
@@ -52,7 +49,6 @@ IT Operations: Tomari
 
 
 **IT Orchestration and Security**
-
 * Set up the server virtual machine
   * If needed, refer to tutorial videos on the Sprint-02 section on Canvas
 * Identify what secrets we have.
@@ -140,3 +136,15 @@ This is where it keeps record of the times when a student attempted to log into 
 | 4  | H004  | bob@example.com | 2025-02-28 13:50:30 |
 | 5  | H005  | alice@example.com | 2025-02-28 13:52:10 |
 
+
+## VMs
+
+There is a single VM that hosts both the database and the backend API. Our Operations and Security individual explained that the database setup is a bunch of SQL scripts while the API is a fastAPI endpoint so a user could technically communicate with the database locally from the VM and expose only the fastapi port without needing a vm to host the database and another for the backend. There would be no need to expose a port for SQL since it will be in the same VM as the backend. However, we recieved feedback that we should have this seperate. This current design would also prevent encryption, replication and scaling all at the same time.
+
+
+![homepage-image](../images/vm_design_v1.PNG)
+
+
+## Conclusion
+
+Overall, this sprint brought functionality in our project with having a front-end (the UI) and back-end (python) and database deployed. What's next for sprint-03 is to refine with what we have. This includes improving the UI of the website, fix the privacy issue of student log ins being publically accessible, reworking the VM setup, and migrating the database from airtable to SQL. 
