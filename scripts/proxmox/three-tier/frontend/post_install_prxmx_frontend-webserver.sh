@@ -22,7 +22,7 @@ sudo npm install -g --save express ejs pm2
 
 # pm2.io is an applcation service manager for Javascript applications
 # Using pm2 start the express js application as the user vagrant
-sudo -u vagrant pm2 start server.js
+sudo -u vagrant pm2 start index.js
 
 # This creates your javascript application service file
 sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u vagrant --hp /home/vagrant
