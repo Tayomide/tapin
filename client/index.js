@@ -7,9 +7,8 @@ const PORT = 3000;
 
 // Note: Nginx handles static assets in production
 // Serve static assets under /assets
-if(process.env.NODE_ENV !== 'production') {
-  app.use('/assets', express.static(path.join(__dirname, 'assets')));
-}
+// if(process.env.NODE_ENV !== 'production')
+app.use('/assets', express.static(path.join(__dirname, 'assets')));
 
 // Dynamic middleware to serve HTML files based on route structure
 app.use((req, res, next) => {
