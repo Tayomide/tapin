@@ -22,4 +22,8 @@ server {
     proxy_set_header X-Real-IP $remote_addr;
     proxy_ssl_server_name on;
   }
+
+  location /assets/ {
+    proxy_pass http://backend/assets/;
+  }
 }
