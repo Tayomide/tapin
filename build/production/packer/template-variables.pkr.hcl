@@ -97,6 +97,23 @@ variable "frontend-VMNAME" {
   default = "team05m-prod-fe"
 }
 
+variable "backend-VMNAME" {
+  type    = string
+  default = "team05m-prod-be"
+}
+
+# This is the name of the Virtual Machine Template you want to create
+variable "database-VMNAME" {
+  type    = string
+  default = "team05m-prod-db"
+}
+
+# This is the name of the Virtual Machine Template you want to create
+variable "loadbalancer-VMNAME" {
+  type    = string
+  default = "team05m-prod-lb"
+}
+
 variable "iso_checksum" {
   type    = string
   default = "file:https://mirrors.edge.kernel.org/ubuntu-releases/22.04.5/SHA256SUMS"
@@ -115,4 +132,20 @@ variable "local_iso_name" {
 variable "FE-TAGS" {
   type = string
   default  = "frontend;team05m"
+}
+
+variable "BE-TAGS" {
+  type = string
+  default  = "backend;team05m"
+}
+
+variable "DB-TAGS" {
+  type = string
+  default  = "database;team05m"
+}
+
+# Use the tags for your team name and what type of artifact this is
+variable "LB-TAGS" {
+  type = string
+  default  = "loadbalancer;team05m"
 }

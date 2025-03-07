@@ -2,9 +2,12 @@ const express = require('express');
 const path = require('path');
 
 const app = express();
+// TODO: Make this an env
 const PORT = 3000;
 
+// Note: Nginx handles static assets in production
 // Serve static assets under /assets
+// if(process.env.NODE_ENV !== 'production')
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 
 // Dynamic middleware to serve HTML files based on route structure
