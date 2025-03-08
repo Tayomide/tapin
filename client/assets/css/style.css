@@ -130,7 +130,7 @@ input {
   font-size: 1em; /*16px/16px=1em*/
 }
 
-.student-form-inputs .employee-form-inputs {
+.student-form-inputs, .employee-form-inputs {
   font: inherit;
   max-width: 15em; /*240px/16px=15em*/
   margin: auto;
