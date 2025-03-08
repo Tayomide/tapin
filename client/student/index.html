@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>IDEA Shop Student Check-In</title>
     <!-- Reuse the same CSS to match the look & feel of index.html -->
-    <link rel="stylesheet" href="..\assets\css\style.css" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
   </head>
   <body>
 
@@ -27,27 +27,31 @@
       <h2 class="emphasis">Student Information</h2>
       <p class="subtext">Enter your name and A# to check in.</p>
       <form>
-        <div>
-          <label for="studentName" hidden>Student Name</label>
-          <input
-            type="text"
-            id="studentName"
-            name="studentName"
-            placeholder="Full Name"
-            required
-          />
-        </div>
-        <div>
-          <label for="studentId" hidden>Student A#</label>
-          <input
-            type="text"
-            id="studentId"
-            name="studentId"
-            placeholder="A# (e.g., A12345678)"
-            required
-          />
-        </div>
-        <button type="submit" class="btn">Check In</button>
+        <ol class="student-form-inputs">
+          <li class="form-field">
+            <label for="studentName" hidden>Student Name</label>
+            <input
+              type="text"
+              id="studentName"
+              name="studentName"
+              placeholder="John Doe"
+              required
+            />
+          </li>
+          <li class="form-field">
+            <label for="studentId" hidden>Student A#</label>
+            <input
+              type="text"
+              id="studentId"
+              name="studentId"
+              placeholder="A12345678"
+              required
+            />
+          </li>
+          <li id="container-student-submit">
+            <button type="submit" name="submit" class="btn">Check In</button>
+          </li>
+        </ol>
       </form>
     </main>
 
