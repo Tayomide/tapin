@@ -124,6 +124,30 @@ html, body {
   background-color: #990000; /* Slightly darker red */
 }
 
+/* --- Form Inputs (Not Including Buttons) --- */
+/*As of 03/08/2025 the default font is 16 pixels*/
+
+input {
+  font-size: 1em; /*16px/16px=1em*/
+}
+
+.student-form-inputs {
+  font: inherit;
+  max-width: 15em; /*240px/16px=15em*/
+  margin: auto;
+}
+
+#studentName, #studentId {
+  border-radius: 0.50em; /*8px/16px=0.50em*/
+  border-style: hidden;
+  box-sizing: border-box;
+  margin-top: 0.25em; /*4px/16px=0.25em*/
+  margin-bottom: 0.50em; /*8px/16px=0.50em*/
+  padding: 0.50em 0.50em; /*8px/16px=0.50em*/
+  width: 100%;
+  max-width: 100%;
+}
+
 /* --- Footer --- */
 .site-footer {
   background-color: #f1f1f1;
