@@ -28,27 +28,31 @@
 
       <!-- Example login form -->
       <form>
-        <div>
-          <label for="empNumber" hidden>Employee Number</label>
-          <input
-            type="text"
-            id="empNumber"
-            name="empNumber"
-            placeholder="Employee Number"
-            required
-          />
-        </div>
-        <div>
-          <label for="empPin" hidden>Employee PIN</label>
-          <input
-            type="password"
-            id="empPin"
-            name="empPin"
-            placeholder="PIN"
-            required
-          />
-        </div>
-        <button type="submit" class="btn">Log In</button>
+        <ol class="employee-form-inputs">
+          <li class="form-field">
+            <label for="empNumber" hidden>Employee Number</label>
+            <input
+              type="text"
+              id="empNumber"
+              name="empNumber"
+              placeholder="Employee Number"
+              required
+            />
+          </li>
+          <li class="form-field">
+            <label for="empPin" hidden>Employee PIN</label>
+            <input
+              type="password"
+              id="empPin"
+              name="empPin"
+              placeholder="PIN"
+              required
+            />
+          </li>
+          <li id="container-employee-submit">
+            <button type="submit" class="btn">Log In</button>
+          </li>
+        </ol>
       </form>
 
       <!-- Example table of students (optional) -->
