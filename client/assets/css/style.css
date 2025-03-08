@@ -31,6 +31,11 @@ html, body {
   flex-direction: column;
 }
 
+/* --- Removes bullet points and numbers from lists by default---*/
+ol, ul li{
+  list-style: none;
+}
+
 /* --- Header --- */
 .site-header {
   background-color: var(--primary-color);
