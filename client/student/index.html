@@ -26,7 +26,7 @@
     <main class="kiosk-container">
       <h2 class="emphasis">Student Information</h2>
       <p class="subtext">Check-in with your full name and A&#35 if you don't have your HawkID.</p>
-      <form>
+      <form id="studentForm">
         <ol class="student-form-inputs">
           <li class="form-field">
             <label for="studentName" hidden>Student Name</label>
@@ -49,7 +49,10 @@
             />
           </li>
           <li id="container-student-submit">
-            <button type="submit" name="submit" class="btn">Check In</button>
+            <button id="studentSubmit" type="button" name="submit" class="btn" onclick="return validateForm()">Check In</button>
+          </li>
+          <li id="container-error">
+            <p id="error"></p>
           </li>
         </ol>
       </form>
