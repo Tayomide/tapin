@@ -23,5 +23,5 @@ document.getElementById("studentSubmit").onclick = function validateForm() {
         return false;
     }
 
-    window.location.href = "../training_complete/index.html";
+    window.location.href = "/training_complete";
 };
