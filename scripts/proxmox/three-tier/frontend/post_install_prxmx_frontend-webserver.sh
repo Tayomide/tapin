@@ -44,3 +44,5 @@ sudo sed -i "s/FQDN=/FQDN=$FQDN/" /home/vagrant/spring2025-team05/client/.env
 sudo sed -i "s/DBUSER=/DBUSER=$DBUSER/" /home/vagrant/spring2025-team05/client/.env
 sudo sed -i "s/DBPASS=/DBPASS=$DBPASS/" /home/vagrant/spring2025-team05/client/.env
 sudo sed -i "s/DATABASE=/DATABASE=$DATABASE/" /home/vagrant/spring2025-team05/client/.env
+sudo sed -i "s/OAUTH_CLIENT_ID=/OAUTH_CLIENT_ID=$OAUTH_CLIENT_ID/" /home/vagrant/spring2025-team05/client/.env
+sudo sed -i "s/OAUTH_CLIENT_SECRET=/OAUTH_CLIENT_SECRET=$OAUTH_CLIENT_SECRET/" /home/vagrant/spring2025-team05/client/.env
