@@ -62,6 +62,14 @@ locals {
   DATABASE = vault("/secret/data/DB","DATABASENAME") 
 }
 
+locals {
+  OAUTH_CLIENT_ID = vault("/secret/data/AUTH/GOOGLE", "CLIENT-ID")
+}
+
+locals {
+  OAUTH_CLIENT_SECRET = vault("/secret/data/AUTH/GOOGLE", "CLIENT-SECRET")
+}
+
 ##############################################################################
 # This set of variables controls the resources allocated to building the 
 # VM templates -- the resources can be low because we will expand/declare the
