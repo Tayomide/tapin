@@ -46,3 +46,5 @@ sudo sed -i "s/DBPASS=/DBPASS=$DBPASS/" /home/vagrant/spring2025-team05/client/.
 sudo sed -i "s/DATABASE=/DATABASE=$DATABASE/" /home/vagrant/spring2025-team05/client/.env
 sudo sed -i "s/OAUTH_CLIENT_ID=/OAUTH_CLIENT_ID=$OAUTH_CLIENT_ID/" /home/vagrant/spring2025-team05/client/.env
 sudo sed -i "s/OAUTH_CLIENT_SECRET=/OAUTH_CLIENT_SECRET=$OAUTH_CLIENT_SECRET/" /home/vagrant/spring2025-team05/client/.env
+ESCAPED_URI=$(printf '%s\n' "$OAUTH_REDIRECT_URI" | sed 's/[/&|]/\&/g')
+sudo sed -i "s|OAUTH_REDIRECT_URI=|OAUTH_REDIRECT_URI=$ESCAPED_URI|" /home/vagrant/spring2025-team12/client/.env

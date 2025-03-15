@@ -26,6 +26,8 @@ sudo sed -i "s/DBPASS=/DBPASS=$DBPASS/" /home/vagrant/spring2025-team05/server/.
 sudo sed -i "s/DATABASE=/DATABASE=$DATABASE/" /home/vagrant/spring2025-team05/server/.env
 sudo sed -i "s/OAUTH_CLIENT_ID=/OAUTH_CLIENT_ID=$OAUTH_CLIENT_ID/" /home/vagrant/spring2025-team05/server/.env
 sudo sed -i "s/OAUTH_CLIENT_SECRET=/OAUTH_CLIENT_SECRET=$OAUTH_CLIENT_SECRET/" /home/vagrant/spring2025-team05/server/.env
+ESCAPED_URI=$(printf '%s\n' "$OAUTH_REDIRECT_URI" | sed 's/[/&|]/\&/g')
+sudo sed -i "s|OAUTH_REDIRECT_URI=|OAUTH_REDIRECT_URI=$ESCAPED_URI|" /home/vagrant/spring2025-team12/client/.env
 
 # Start the server with nohup for persistence
 nohup uvicorn app:app --host 0.0.0.0 --port 8000 > server.log 2>&1 &
