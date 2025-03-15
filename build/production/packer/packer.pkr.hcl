@@ -675,7 +675,7 @@ build {
     execute_command = "echo 'vagrant' | {{ .Vars }} sudo -E -S sh '{{ .Path }}'"
     scripts = ["../../../scripts/proxmox/three-tier/backend/post_install_prxmx_backend-firewall-open-ports.sh",
     "../../../scripts/proxmox/three-tier/backend/post_install_prxmx_backend.sh"]
-    environment_vars = ["DBUSER=${local.DBUSER}", "DBPASS=${local.DBPASS}", "DATABASE=${local.DATABASE}", "FQDN=${local.FQDN}", "OAUTH_CLIENT_ID=${local.OAUTH_CLIENT_ID}", "OAUTH_CLIENT_SECRET=${local.OAUTH_CLIENT_SECRET}"]
+    environment_vars = ["DBUSER=${local.DBUSER}", "DBPASS=${local.DBPASS}", "DATABASE=${local.DATABASE}", "FQDN=${local.FQDN}", "OAUTH_CLIENT_ID=${local.OAUTH_CLIENT_ID}", "OAUTH_CLIENT_SECRET=${local.OAUTH_CLIENT_SECRET}", "OAUTH_REDIRECT_URI=${local.OAUTH_REDIRECT_URI}"]
     only             = ["proxmox-iso.backend","proxmox-iso.backend42"]
   }
 
@@ -684,7 +684,7 @@ build {
     scripts = ["../../../scripts/proxmox/three-tier/frontend/post_install_prxmx_frontend-firewall-open-ports.sh",
       "../../../scripts/proxmox/three-tier/frontend/post_install_prxmx_frontend-webserver.sh",
     "../../../scripts/proxmox/three-tier/frontend/application-start.sh"]
-    environment_vars = ["DBUSER=${local.DBUSER}", "DBPASS=${local.DBPASS}", "DATABASE=${local.DATABASE}", "FQDN=${local.FQDN}", "OAUTH_CLIENT_ID=${local.OAUTH_CLIENT_ID}", "OAUTH_CLIENT_SECRET=${local.OAUTH_CLIENT_SECRET}"]
+    environment_vars = ["DBUSER=${local.DBUSER}", "DBPASS=${local.DBPASS}", "DATABASE=${local.DATABASE}", "FQDN=${local.FQDN}", "OAUTH_CLIENT_ID=${local.OAUTH_CLIENT_ID}", "OAUTH_CLIENT_SECRET=${local.OAUTH_CLIENT_SECRET}", "OAUTH_REDIRECT_URI=${local.OAUTH_REDIRECT_URI}"]
     only             = ["proxmox-iso.frontend","proxmox-iso.frontend42"]
   }
 
