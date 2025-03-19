@@ -60,8 +60,12 @@ a, .btn {
   display: inline-block;
 }
 
-a:hover {
+a:hover, .btn:hover {
   background-color: #990000; /* Slightly darker red */
+}
+
+input {
+  font-size: 1em; /*16px/16px=1em*/
 }
 
 /* --- Header --- */
