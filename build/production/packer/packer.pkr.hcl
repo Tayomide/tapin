@@ -149,7 +149,7 @@ source "proxmox-iso" "database" {
 ###########################################################################################
 # This is a Packer build template for the frontend webserver
 ###########################################################################################
-source "proxmox-iso" "frontend-webserver" {
+source "proxmox-iso" "frontend" {
   boot_command = [
     "e<wait>",
     "<down><down><down>",
@@ -212,9 +212,9 @@ source "proxmox-iso" "frontend-webserver" {
 }
 
 ###########################################################################################
-# This is a Packer build template for the load-balancer
+# This is a Packer build template for the loadbalancer
 ###########################################################################################
-source "proxmox-iso" "load-balancer" {
+source "proxmox-iso" "loadbalancer" {
   boot_command = [
     "e<wait>",
     "<down><down><down>",
@@ -410,7 +410,7 @@ source "proxmox-iso" "database42" {
 ###########################################################################################
 # This is a Packer build template for the frontend webserver
 ###########################################################################################
-source "proxmox-iso" "frontend-webserver42" {
+source "proxmox-iso" "frontend42" {
   boot_command = [
     "e<wait>",
     "<down><down><down>",
@@ -473,9 +473,9 @@ source "proxmox-iso" "frontend-webserver42" {
 }
 
 ###########################################################################################
-# This is a Packer build template for the load-balancer
+# This is a Packer build template for the loadbalancer
 ###########################################################################################
-source "proxmox-iso" "load-balancer42" {
+source "proxmox-iso" "loadbalancer42" {
   boot_command = [
     "e<wait>",
     "<down><down><down>",
@@ -538,7 +538,7 @@ source "proxmox-iso" "load-balancer42" {
 }
 
 build {
-  sources = ["source.proxmox-iso.frontend-webserver","source.proxmox-iso.frontend-webserver42", "source.proxmox-iso.database", "source.proxmox-iso.database42", "source.proxmox-iso.load-balancer", "source.proxmox-iso.load-balancer42", "source.proxmox-iso.backend", "source.proxmox-iso.backend42"]
+  sources = ["source.proxmox-iso.frontend","source.proxmox-iso.frontend42", "source.proxmox-iso.database", "source.proxmox-iso.database42", "source.proxmox-iso.loadbalancer", "source.proxmox-iso.loadbalancer42", "source.proxmox-iso.backend", "source.proxmox-iso.backend42"]
 
   #############################################################################
   # Using the file provisioner to SCP this file to the instance 
@@ -675,7 +675,7 @@ build {
     execute_command = "echo 'vagrant' | {{ .Vars }} sudo -E -S sh '{{ .Path }}'"
     scripts = ["../../../scripts/proxmox/three-tier/backend/post_install_prxmx_backend-firewall-open-ports.sh",
     "../../../scripts/proxmox/three-tier/backend/post_install_prxmx_backend.sh"]
-    environment_vars = ["DBUSER=${local.DBUSER}", "DBPASS=${local.DBPASS}", "DATABASE=${local.DATABASE}", "FQDN=${local.FQDN}"]
+    environment_vars = ["DBUSER=${local.DBUSER}", "DBPASS=${local.DBPASS}", "DATABASE=${local.DATABASE}", "FQDN=${local.FQDN}", "OAUTH_CLIENT_ID=${local.OAUTH_CLIENT_ID}", "OAUTH_CLIENT_SECRET=${local.OAUTH_CLIENT_SECRET}", "OAUTH_REDIRECT_URI=${local.OAUTH_REDIRECT_URI}"]
     only             = ["proxmox-iso.backend","proxmox-iso.backend42"]
   }
 
@@ -684,8 +684,8 @@ build {
     scripts = ["../../../scripts/proxmox/three-tier/frontend/post_install_prxmx_frontend-firewall-open-ports.sh",
       "../../../scripts/proxmox/three-tier/frontend/post_install_prxmx_frontend-webserver.sh",
     "../../../scripts/proxmox/three-tier/frontend/application-start.sh"]
-    environment_vars = ["DBUSER=${local.DBUSER}", "DBPASS=${local.DBPASS}", "DATABASE=${local.DATABASE}", "FQDN=${local.FQDN}"]
-    only             = ["proxmox-iso.frontend-webserver","proxmox-iso.frontend-webserver42"]
+    environment_vars = ["DBUSER=${local.DBUSER}", "DBPASS=${local.DBPASS}", "DATABASE=${local.DATABASE}", "FQDN=${local.FQDN}", "OAUTH_CLIENT_ID=${local.OAUTH_CLIENT_ID}", "OAUTH_CLIENT_SECRET=${local.OAUTH_CLIENT_SECRET}", "OAUTH_REDIRECT_URI=${local.OAUTH_REDIRECT_URI}"]
+    only             = ["proxmox-iso.frontend","proxmox-iso.frontend42"]
   }
 
   provisioner "shell" {
@@ -701,7 +701,7 @@ build {
     scripts = ["../../../scripts/proxmox/three-tier/loadbalancer/post_install_prxmx_load-balancer-firewall-open-ports.sh",
       "../../../scripts/proxmox/three-tier/loadbalancer/post_install_prxmx_load_balancer.sh",
     "../../../scripts/proxmox/three-tier/loadbalancer/move-nginx-files.sh"]
-    only = ["proxmox-iso.load-balancer","proxmox-iso.load-balancer42"]
+    only = ["proxmox-iso.loadbalancer","proxmox-iso.loadbalancer42"]
   }
 
   provisioner "shell" {

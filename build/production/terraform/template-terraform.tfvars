@@ -16,7 +16,7 @@ pm_log_file   = "terraform-plugin-proxmox.log" # (Optional; defaults to terrafor
 # FQDN -- this is needed for the gossip based DNS to work
 ###############################################################################
 frontend-yourinitials            = ""                     # initials to add to make unique systems
-frontend-numberofvms             = 1                      # quantity of that template to launch
+frontend-numberofvms             = 3                      # quantity of that template to launch
 frontend-desc                    = "Front end for production environment"                     # What is the purpose of the TF template
 backend-yourinitials             = ""                     # initials to add to make unique systems
 backend-numberofvms              = 1                      # quantity of that template to launch

@@ -1,9 +1,12 @@
 const express = require('express');
 const path = require('path');
-
+require('dotenv').config()
 const app = express();
 // TODO: Make this an env
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
+const CLIENT_ID = process.env.OAUTH_CLIENT_ID
+const CLIENT_SECRET = process.env.OAUTH_CLIENT_SECRET
+const REDIRECT_URI = process.env.OAUTH_REDIRECT_URI;
 
 // Note: Nginx handles static assets in production
 // Serve static assets under /assets
@@ -18,6 +21,49 @@ app.use((req, res, next) => {
       next(); // Move to the next middleware if the file isn't found
     }
   });
+});
+
+// 1️⃣ Redirect to Google OAuth
+app.get("/auth/google", (req, res) => {
+  const googleAuthURL = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&scope=openid%20profile%20email&access_type=offline`;
+  res.redirect(googleAuthURL);
+});
+
+// // 2️⃣ Handle Google OAuth Callback
+app.get("/auth/callback", async (req, res) => {
+  const { code } = req.query;
+
+  if (!code) return res.status(400).json({ error: "No authorization code provided" });
+
+  try {
+    const tokenResponse = await fetch("https://oauth2.googleapis.com/token", {
+      method: "POST",
+      headers: {
+          "Content-Type": "application/json"
+      },
+
+      body: JSON.stringify({
+        client_id: CLIENT_ID,
+        client_secret: CLIENT_SECRET,
+        code,
+        redirect_uri: REDIRECT_URI,
+        grant_type: "authorization_code",
+      }) 
+    }).then(res => res.json());
+    
+    const { access_token, id_token } = tokenResponse;
+
+    res.send(`
+      <script>
+        localStorage.setItem("access_token", "${access_token}");
+        localStorage.setItem("id_token", "${id_token}");
+        window.location.href = "/training_complete";
+      </script>
+    `);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Failed to exchange token" });
+  }
 });
 
 // Default route for root index.html
