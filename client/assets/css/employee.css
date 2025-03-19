@@ -1,0 +1,16 @@
+.employee-form-inputs {
+  font: inherit;
+  max-width: 15em; /*240px/16px=15em*/
+  margin: auto;
+}
+
+#studentName, #studentId, #empNumber, #empPin {
+  border-radius: 0.50em;  /*8px/16px=0.50em*/
+  border-style: hidden;
+  box-sizing: border-box;
+  margin-top: 0.25em;     /*4px/16px=0.25em*/
+  margin-bottom: 0.50em;  /*8px/16px=0.50em*/
+  padding: 0.50em 0.50em; /*8px/16px=0.50em*/
+  width: 100%;
+  max-width: 100%;
+}
