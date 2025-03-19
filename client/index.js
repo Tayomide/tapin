@@ -25,11 +25,11 @@ app.use((req, res, next) => {
 
 // 1️⃣ Redirect to Google OAuth
 app.get("/auth/google", (req, res) => {
-  const googleAuthURL = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&scope=openid%20profile%20email&access_type=offline`;
+  const googleAuthURL = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&scope=openid%20profile%20email&access_type=offline&prompt=consent`;
   res.redirect(googleAuthURL);
 });
 
-// // 2️⃣ Handle Google OAuth Callback
+// 2️⃣ Handle Google OAuth Callback
 app.get("/auth/callback", async (req, res) => {
   const { code } = req.query;
 
@@ -47,11 +47,12 @@ app.get("/auth/callback", async (req, res) => {
         client_secret: CLIENT_SECRET,
         code,
         redirect_uri: REDIRECT_URI,
-        grant_type: "authorization_code",
+        grant_type: "authorization_code"
       }) 
     }).then(res => res.json());
     
-    const { access_token, id_token } = tokenResponse;
+    const { access_token, expires_in, id_token, refresh_token} = tokenResponse;
+    console.log(tokenResponse)
 
     res.send(`
       <script>
