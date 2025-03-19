@@ -1,0 +1,10 @@
+main .tap-container p {
+  margin-bottom: 2rem;
+}
+
+/* --- Buttons --- */
+main .buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
