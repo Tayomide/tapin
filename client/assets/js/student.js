@@ -1,4 +1,4 @@
-document.getElementById('student-form').addEventListener('submit', function(event) {
+document.getElementById('studentForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent the form from submitting in the traditional way
 
     const name = document.getElementById('name').value;
