@@ -1,0 +1,25 @@
+{
+  "name": "Server",
+  "dockerFile": "Dockerfile",
+  "context": "../..",
+  "runArgs": ["--env-file", "server/.env", "-v", "${localWorkspaceFolder}/server:/workspace/server"],
+  "workspaceFolder": "/workspace/server",
+  "postCreateCommand": "/bin/bash /workspaces/spring2025-team05/scripts/devcontainer/server/startup.sh",
+  "customizations": {
+    "vscode": {
+      "extensions": ["ms-python.python", "ms-python.vscode-pylance"],
+      "settings": {
+        "python.pythonPath": "${workspaceFolder}/.venv/Scripts/python.exe"
+      }
+    }
+  },
+  "forwardPorts": [
+    8000
+  ],
+  "portsAttributes": {
+    "8000": {
+      "label": "Server",
+      "onAutoForward": "notify"
+    }
+  }
+}
