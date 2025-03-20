@@ -8,7 +8,15 @@ load_dotenv()
 
 app = FastAPI()
 
-PORT = int(os.getenv("PORT", 8000))
+# Get the value of PORT, default to 8000 if not set
+port = os.getenv("PORT", "8000")
+
+# Check if the value can be converted to an integer
+try:
+  PORT = int(port)
+except ValueError:
+  print(f"Invalid PORT value: {port}, using default 8000")
+  PORT = 8000
 
 app.add_middleware(
   CORSMiddleware,
