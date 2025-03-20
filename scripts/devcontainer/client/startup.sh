@@ -10,5 +10,8 @@ source "${SCRIPT_DIR}/../create_ssl_cert.sh"
 # cd back to home dir
 cd /workspace/client
 
+# Create environment variables
+cp --update=none .template-env .env
+
 # Startup server
 npm run dev
