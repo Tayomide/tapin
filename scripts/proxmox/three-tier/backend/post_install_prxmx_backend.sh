@@ -30,4 +30,4 @@ ESCAPED_URI=$(printf '%s\n' "$OAUTH_REDIRECT_URI" | sed 's/[/&|]/\&/g')
 sudo sed -i "s|OAUTH_REDIRECT_URI=|OAUTH_REDIRECT_URI=$ESCAPED_URI|" /home/vagrant/spring2025-team05/server/.env
 
 # Start the server with nohup for persistence
-nohup uvicorn app:app --host 0.0.0.0 --port 8000 > server.log 2>&1 &
+nohup python app.py > server.log 2>&1 &
