@@ -1,0 +1,22 @@
+{
+  "name": "Client",
+  "dockerFile": "Dockerfile",
+  "context": "../..",
+  "runArgs": ["--env-file", "client/.env", "-v", "${localWorkspaceFolder}/client:/workspace/client"],
+  "workspaceFolder": "/workspace/client",
+  "postCreateCommand": "/bin/bash /workspaces/spring2025-team05/scripts/devcontainer/client/startup.sh",
+  "customizations": {
+    "vscode": {
+      "extensions": ["dbaeumer.vscode-eslint", "esbenp.prettier-vscode"]
+    }
+  },
+  "forwardPorts": [
+    3000
+  ],
+  "portsAttributes": {
+    "3000": {
+      "label": "Client",
+      "onAutoForward": "notify"
+    }
+  }
+}
