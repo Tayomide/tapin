@@ -4,8 +4,8 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>IDEA Shop Session Logs</title>
-		<link rel="stylesheet" href="/assets/css/global.css" />
-		<link rel="stylesheet" href="/assets/css/employee.css" />
+		<link rel="stylesheet" href="../assets/css/global.css" />
+		<link rel="stylesheet" href="../assets/css/employee.css" />
 	</head>
 	<body>
 		<!-- Header -->
@@ -16,13 +16,44 @@
       <!-- Hero / Banner -->
       <section class="hero-banner">
         <h1>Data Center</h1>
-        <p>Your hub in monitoring the IDEA Shop Loggons</p>
+        <p>Your hub in monitoring the IDEA Shop Check-Ins</p>
       </section>
     </header>
 
 		<!-- Main Content -->
     <main>
-			
+
+      <!-- Sample Table Template (Not getting data from database)-->
+			<div style="margin-top: 2rem;">
+        <h3>Loggin Sessions</h3>
+        <table style="margin: 0 auto; border-collapse: collapse;">
+          <thead>
+            <tr class="table-header">
+              <th id="headerName">Name</th>
+              <th id="headerANum">A#</th>
+              <th id="headerTime">Check-In Time</th>
+            </tr>
+          </thead>
+          <tbody id="studentList">
+            <!-- Dynamically populated rows -->
+            <tr class="student-records">
+              <td>John Doe</td>
+              <td>A12345678</td>
+              <td class="time-field" >9:15 AM</td>
+            </tr>
+            <tr class="student-records">
+              <td>Peter Parker</td>
+              <td>A87654321</td>
+              <td class="time-field" >10:15 AM</td>
+            </tr>
+            <tr class="student-records">
+              <td>James P. Sullivan</td>
+              <td>A11223344</td>
+              <td class="time-field" >12:11 PM</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 		</main>
 
 		<!-- Footer -->
