@@ -9,6 +9,7 @@ const PORT = process.env.PORT || 3000
 const CLIENT_ID = process.env.OAUTH_CLIENT_ID
 const CLIENT_SECRET = process.env.OAUTH_CLIENT_SECRET
 const REDIRECT_URI = process.env.OAUTH_REDIRECT_URI
+const FQDN = process.env.FQDN
 
 // Note: Nginx handles static assets in production
 // Serve static assets under /assets
@@ -36,6 +37,10 @@ app.get("/auth/callback", async (req, res) => {
   const { code } = req.query
 
   if (!code) return res.status(400).json({ error: "No authorization code provided" })
+
+  const result = await fetch(`${FQDN}`)
+  const response = result.json()
+  console.log(response)
 
   try {
     const tokenResponse = await fetch("https://oauth2.googleapis.com/token", {
