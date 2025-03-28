@@ -1,0 +1,22 @@
+#sessions-container{
+  gap: 1em;
+  display: flex;
+  flex-direction: column;
+}
+
+#sessions-container li{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.device-name{
+  padding-right: 1em;
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+.status {
+  display: inline-flex;
+  flex: 1;
+}
