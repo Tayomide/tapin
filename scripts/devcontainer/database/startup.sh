@@ -1,6 +1,8 @@
 #!/bin/bash
 echo "Starting MariaDB initialization..."
 
+sed -i 's/^bind-address\s*=.*$/bind-address = 0.0.0.0/' /etc/mysql/mariadb.conf.d/50-server.cnf
+
 # Enabling MariaDB Service
 service mariadb start
 
