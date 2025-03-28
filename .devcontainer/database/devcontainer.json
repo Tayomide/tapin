@@ -2,7 +2,12 @@
   "name": "Database",
   "dockerFile": "Dockerfile",
   "context": "../..",
-  "runArgs": ["--env-file","database/.env", "-v", "${localWorkspaceFolder}/database:/workspace/database"],
+  "runArgs": [
+    "--name", "team05m-prod-db-vm0.service.consul",
+    "--env-file","database/.env",
+    "-v", "${localWorkspaceFolder}/database:/workspace/database",
+    "--network", "prod-network"
+  ],
   "workspaceFolder": "/workspace/database",
   "postCreateCommand": "/bin/bash /workspaces/spring2025-team05/scripts/devcontainer/database/startup.sh",
   "forwardPorts": [

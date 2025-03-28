@@ -2,7 +2,10 @@
   "name": "Client",
   "dockerFile": "Dockerfile",
   "context": "../..",
-  "runArgs": ["-v", "${localWorkspaceFolder}/client:/workspace/client"],
+  "runArgs": [
+    "--name", "team05m-prod-fe-vm0.service.consul",
+    "-v", "${localWorkspaceFolder}/client:/workspace/client",
+    "--network", "prod-network"],
   "workspaceFolder": "/workspace/client",
   "postCreateCommand": "/bin/bash /workspaces/spring2025-team05/scripts/devcontainer/client/startup.sh",
   "customizations": {
