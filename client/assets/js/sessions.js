@@ -22,7 +22,7 @@ fetch("/api/sessions", {
   console.log(sessions)
   for (const session of sessions.sessions) {
 
-    const milliseconds = new Date(session.updated_at) - new Date(session.created_at)
+    const milliseconds = new Date() - new Date(session.created_at + "Z")
 
     const status = `Logged in for ${getTimeSpent(milliseconds)}`
 
