@@ -24,7 +24,7 @@ fetch("/api/sessions", {
 
     const milliseconds = new Date() - new Date(session.created_at + "Z")
 
-    const status = `Logged in for ${getTimeSpent(milliseconds)}`
+    const status = `Logged in ${getTimeSpent(milliseconds)} ago`
 
     // Create a list item for each session
     const li = document.createElement("li");
