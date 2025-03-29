@@ -18,3 +18,47 @@
 main p {
   margin-bottom: 2rem;
 }
+
+/* Remove commented css if you want to have a better understanding of the table spacing (It's just borders)*/
+/*table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}*/
+
+th, td {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+th {
+  border-bottom: 2px solid #ccc;
+}
+
+td {
+  border-bottom: 1px solid #ccc;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.student-records {
+  text-align: left;
+}
+
+.time-field {
+  text-align: right;
+}
+
+#headerName {
+  padding-left: 80px;
+  padding-right: 80px;
+}
+
+#headerANum {
+  padding-left: 32px;
+  padding-right: 32px;
+}
+
+#headerTime {
+  padding-left: 16px;
+  padding-right: 16px;
+}
