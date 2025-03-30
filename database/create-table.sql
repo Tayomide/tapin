@@ -1,6 +1,6 @@
 -- Creates a small table with three values
 
-USE posts;
+USE ${DATABASE};
 
 CREATE TABLE comment 
 (
