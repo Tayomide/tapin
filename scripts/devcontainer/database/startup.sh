@@ -11,10 +11,10 @@ echo "MariaDB initialization complete!"
 # Execute your SQL scripts
 # -u root -p"${MARIADB_ROOT_PASSWORD}" -e
 
-mysql < ./create-database.sql
-mysql < ./create-table.sql
+envsubst < ./create-database.sql | mysql
+envsubst < ./create-table.sql | mysql
 envsubst < ./create-user-with-permissions.sql | mysql
-mysql < ./insert-records.sql
+envsubst < ./insert-records.sql | mysql
 
 echo "SQL scripts executed!"
 
