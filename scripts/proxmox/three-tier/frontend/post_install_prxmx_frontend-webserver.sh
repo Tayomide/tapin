@@ -30,21 +30,3 @@ sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -
 # This saves which files we have already started -- so pm2 will 
 # restart them at boot
 sudo -u vagrant pm2 save
-
-cp .template-env .env
-
-###############################################################################
-# Using Find and Replace via sed to add in the secrets to connect to MySQL
-# There is a .env file containing an empty template of secrets -- essentially
-# this is a hack to pass environment variables into the vm instances
-###############################################################################
-
-sudo sed -i "s/NODE_ENV=/NODE_ENV=production/" /home/vagrant/spring2025-team05/client/.env
-sudo sed -i "s/FQDN=/FQDN=$FQDN/" /home/vagrant/spring2025-team05/client/.env
-sudo sed -i "s/DBUSER=/DBUSER=$DBUSER/" /home/vagrant/spring2025-team05/client/.env
-sudo sed -i "s/DBPASS=/DBPASS=$DBPASS/" /home/vagrant/spring2025-team05/client/.env
-sudo sed -i "s/DATABASE=/DATABASE=$DATABASE/" /home/vagrant/spring2025-team05/client/.env
-sudo sed -i "s/OAUTH_CLIENT_ID=/OAUTH_CLIENT_ID=$OAUTH_CLIENT_ID/" /home/vagrant/spring2025-team05/client/.env
-sudo sed -i "s/OAUTH_CLIENT_SECRET=/OAUTH_CLIENT_SECRET=$OAUTH_CLIENT_SECRET/" /home/vagrant/spring2025-team05/client/.env
-ESCAPED_URI=$(printf '%s\n' "$OAUTH_REDIRECT_URI" | sed 's/[/&|]/\&/g')
-sudo sed -i "s|OAUTH_REDIRECT_URI=|OAUTH_REDIRECT_URI=$ESCAPED_URI|" /home/vagrant/spring2025-team05/client/.env

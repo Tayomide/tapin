@@ -33,7 +33,7 @@ echo "Executing inline mysql -e to create user..."
 
 # These sample files are located in the mysql directory but need to be part of 
 # your private team repo
-sudo mysql < ./create-database.sql
-sudo mysql < ./create-table.sql
+envsubst < ./create-database.sql | mysql
+envsubst < ./create-table.sql | mysql
 envsubst < ./create-user-with-permissions.sql | mysql
-sudo mysql < ./insert-records.sql
+envsubst < ./insert-records.sql | mysql
