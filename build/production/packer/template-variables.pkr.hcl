@@ -37,37 +37,48 @@ locals {
 
 # This will be the non-root user account name
 locals { 
-  DBUSER = vault("/secret/data/DB","DBUSER")
+  DB_USER = vault("/secret/data/DB","USERNAME")
 }
 
 # This will be the Database user (non-root) password setup
 locals {
-  DBPASS = vault("/secret/data/DB","DBPASS")
-}
-
-# This variable is the IP address range to allow your connections
-# The SQL wildcard is the %
-# 10.110.%.%  could also be a FQDN 
-locals {
-  CONNECTIONFROMIPRANGE = vault("/secret/data/DB","CONNECTIONFROMIPRANGE")
-}
-
-# This will be the fully qualified domain name: team-00-be-vm0.service.consul
-locals {
-  FQDN = vault("/secret/data/DB","DBURL") 
-}
-
-# This will be the Database name you default to (like posts or comments or customers)
-locals {
-  DATABASE = vault("/secret/data/DB","DATABASENAME") 
+  DB_PASS = vault("/secret/data/DB","PASSWORD")
 }
 
 locals {
-  OAUTH_CLIENT_ID = vault("/secret/data/AUTH/GOOGLE", "CLIENT-ID")
+  DB_URL = vault("/secret/data/DB", "URL")
 }
 
 locals {
-  OAUTH_CLIENT_SECRET = vault("/secret/data/AUTH/GOOGLE", "CLIENT-SECRET")
+  DB_NAME = vault("/secret/data/DB", "DATABASE_NAME")
+}
+
+locals {
+  DB_IP = vault("/secret/data/DB", "IP")
+}
+
+locals {
+  SV_PORT = vault("/secret/data/SV", "PORT")
+}
+
+locals {
+  SV_URL = vault("/secret/data/SV", "URL")
+}
+
+locals {
+  SV_SECRET_KEY = vault("/secret/data/SV", "SECRET_KEY")
+}
+
+locals {
+  SV_EXPIRES_IN = vault("/secret/data/SV", "EXPIRES_IN")
+}
+
+locals {
+  OAUTH_CLIENT_ID = vault("/secret/data/AUTH/GOOGLE", "CLIENT_ID")
+}
+
+locals {
+  OAUTH_CLIENT_SECRET = vault("/secret/data/AUTH/GOOGLE", "CLIENT_SECRET")
 }
 
 locals {
