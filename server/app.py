@@ -17,7 +17,7 @@ load_dotenv()
 # TODO: Change environment variables to all caps
 host= os.getenv("DATABASE_HOST")
 user=os.getenv("DATABASE_USER")
-password=os.getenv("USERPASS")
+password=os.getenv("DATABASE_PASSWORD")
 database=os.getenv("DATABASE_NAME")
 client_id=os.getenv("OAUTH_CLIENT_ID")
 client_secret=os.getenv("OAUTH_CLIENT_SECRET")
