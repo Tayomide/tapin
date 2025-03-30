@@ -675,7 +675,18 @@ build {
     execute_command = "echo 'vagrant' | {{ .Vars }} sudo -E -S sh '{{ .Path }}'"
     scripts = ["../../../scripts/proxmox/three-tier/backend/post_install_prxmx_backend-firewall-open-ports.sh",
     "../../../scripts/proxmox/three-tier/backend/post_install_prxmx_backend.sh"]
-    environment_vars = ["DBUSER=${local.DBUSER}", "DBPASS=${local.DBPASS}", "DATABASE=${local.DATABASE}", "FQDN=${local.FQDN}", "OAUTH_CLIENT_ID=${local.OAUTH_CLIENT_ID}", "OAUTH_CLIENT_SECRET=${local.OAUTH_CLIENT_SECRET}", "OAUTH_REDIRECT_URI=${local.OAUTH_REDIRECT_URI}"]
+    environment_vars = [
+      "PORT=${local.DB_PORT}",
+      "DATABASE_HOST=${local.DB_URL}",
+      "DATABASE_USER=${local.DB_USER}",
+      "DATBASE_PASSWORD=${local.DB_PASS}",
+      "DATABASE_NAME=${local.DB_NAME}",
+      "OAUTH_CLIENT_ID=${local.OAUTH_CLIENT_ID}",
+      "OAUTH_CLIENT_SECRET=${local.OAUTH_CLIENT_SECRET}",
+      "OAUTH_REDIRECT_URI=${local.OAUTH_REDIRECT_URI}",
+      "SECRET_KEY=${local.SV_SECRET_KEY}",
+      "EXPIRES_IN=${local.SV_EXPIRES_IN}"
+    ]
     only             = ["proxmox-iso.backend","proxmox-iso.backend42"]
   }
 
@@ -684,7 +695,12 @@ build {
     scripts = ["../../../scripts/proxmox/three-tier/frontend/post_install_prxmx_frontend-firewall-open-ports.sh",
       "../../../scripts/proxmox/three-tier/frontend/post_install_prxmx_frontend-webserver.sh",
     "../../../scripts/proxmox/three-tier/frontend/application-start.sh"]
-    environment_vars = ["DBUSER=${local.DBUSER}", "DBPASS=${local.DBPASS}", "DATABASE=${local.DATABASE}", "FQDN=${local.FQDN}", "OAUTH_CLIENT_ID=${local.OAUTH_CLIENT_ID}", "OAUTH_CLIENT_SECRET=${local.OAUTH_CLIENT_SECRET}", "OAUTH_REDIRECT_URI=${local.OAUTH_REDIRECT_URI}"]
+    environment_vars = [
+      "OAUTH_CLIENT_ID=${local.OAUTH_CLIENT_ID}",
+      "OAUTH_CLIENT_SECRET=${local.OAUTH_CLIENT_SCRET}",
+      "OAUTH_REDIRECT_URI=${local.OAUTH_REDIRECT_URI}",
+      "BACKEND_HOST=${local.SV_URL}:${local.SV_PORT}"
+    ]
     only             = ["proxmox-iso.frontend","proxmox-iso.frontend42"]
   }
 
@@ -692,7 +708,12 @@ build {
     execute_command = "echo 'vagrant' | {{ .Vars }} sudo -E -S sh '{{ .Path }}'"
     scripts = ["../../../scripts/proxmox/three-tier/database/post_install_prxmx_database-firewall-open-ports.sh",
     "../../../scripts/proxmox/three-tier/database/post_install_prxmx_database.sh"]
-    environment_vars = ["DBUSER=${local.DBUSER}", "IPRANGE=${local.CONNECTIONFROMIPRANGE}", "DBPASS=${local.DBPASS}"]
+    environment_vars = [
+      "USERNAME=${locals.DB_USER}",
+      "IP=${locals.DB_IP}",
+      "PASSWORD=${locals.DB_PASS}"
+      "DATABASE=${locals.DB_NAME}",
+    ]
     only             = ["proxmox-iso.database","proxmox-iso.database42"]
   }
 
