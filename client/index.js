@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 3000
 const CLIENT_ID = process.env.OAUTH_CLIENT_ID
 const CLIENT_SECRET = process.env.OAUTH_CLIENT_SECRET
 const REDIRECT_URI = process.env.OAUTH_REDIRECT_URI
-const FQDN = process.env.FQDN
+const FQDN = process.env.BACKEND_HOST
 
 
 // Note: Nginx handles static assets in production
