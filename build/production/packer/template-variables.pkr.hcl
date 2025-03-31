@@ -15,13 +15,13 @@ locals {
 # Add your name and PK-USERNAME value to vault's /secret/data/SECRETKEY/<YOURNAME>
 # And then change TIBRAHIM to your name
 locals {
-  USERNAME = vault("/secret/data/SECRETKEY/TIBRAHIM","PK-USERNAME")
+  USERNAME = vault("/secret/data/SECRETKEY/TIBRAHIM","PK_USERNAME")
 }
 
 # Add your name and PK-TOKEN value to vault's /secret/data/SECRETKEY/<YOURNAME>
 # And then change TIBRAHIM to the your name
 locals {
-  PROXMOX_TOKEN = vault("/secret/data/ACCESSKEY/TIBRAHIM","PK-TOKEN")
+  PROXMOX_TOKEN = vault("/secret/data/ACCESSKEY/TIBRAHIM","PK_TOKEN")
 }
 
 locals {
@@ -29,10 +29,10 @@ locals {
 }
 
 locals {
-  SSHPW = vault("/secret/data/SSH","SSHPW")
+  SSH_PW = vault("/secret/data/SSH","SSH_PW")
 }
 locals {
-  SSHUSER = vault("/secret/data/SSH","SSHUSER")
+  SSH_USER = vault("/secret/data/SSH","SSH_USER")
 }
 
 # This will be the non-root user account name
@@ -82,7 +82,7 @@ locals {
 }
 
 locals {
-  OAUTH_REDIRECT_URI = vault("/secret/data/AUTH/GOOGLE", "REDIRECT-URI")
+  OAUTH_REDIRECT_URI = vault("/secret/data/AUTH/GOOGLE", "REDIRECT_URI")
 }
 
 ##############################################################################
