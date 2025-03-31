@@ -711,7 +711,7 @@ build {
     environment_vars = [
       "USERNAME=${locals.DB_USER}",
       "IP=${locals.DB_IP}",
-      "PASSWORD=${locals.DB_PASS}"
+      "PASSWORD=${locals.DB_PASS}",
       "DATABASE=${locals.DB_NAME}",
     ]
     only             = ["proxmox-iso.database","proxmox-iso.database42"]
