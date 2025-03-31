@@ -334,7 +334,7 @@ source "proxmox-iso" "backend42" {
   cloud_init_storage_pool  = "local"
   # io thread option requires virtio-scsi-single controller
   scsi_controller          = "virtio-scsi-single"
-  ssh_password             = "${local.SSH+PW}"
+  ssh_password             = "${local.SSH_PW}"
   ssh_username             = "${local.SSH_USER}"
   ssh_timeout              = "22m"
   template_description     = "A Packer template for team05m Production Frontend webserver"
@@ -676,7 +676,7 @@ build {
     scripts = ["../../../scripts/proxmox/three-tier/backend/post_install_prxmx_backend-firewall-open-ports.sh",
     "../../../scripts/proxmox/three-tier/backend/post_install_prxmx_backend.sh"]
     environment_vars = [
-      "PORT=${local.DB_PORT}",
+      "PORT=${local.SV_PORT}",
       "DATABASE_HOST=${local.DB_URL}",
       "DATABASE_USER=${local.DB_USER}",
       "DATBASE_PASSWORD=${local.DB_PASS}",
@@ -697,7 +697,7 @@ build {
     "../../../scripts/proxmox/three-tier/frontend/application-start.sh"]
     environment_vars = [
       "OAUTH_CLIENT_ID=${local.OAUTH_CLIENT_ID}",
-      "OAUTH_CLIENT_SECRET=${local.OAUTH_CLIENT_SCRET}",
+      "OAUTH_CLIENT_SECRET=${local.OAUTH_CLIENT_SECRET}",
       "OAUTH_REDIRECT_URI=${local.OAUTH_REDIRECT_URI}",
       "BACKEND_HOST=${local.SV_URL}:${local.SV_PORT}"
     ]
@@ -709,10 +709,10 @@ build {
     scripts = ["../../../scripts/proxmox/three-tier/database/post_install_prxmx_database-firewall-open-ports.sh",
     "../../../scripts/proxmox/three-tier/database/post_install_prxmx_database.sh"]
     environment_vars = [
-      "USERNAME=${locals.DB_USER}",
-      "IP=${locals.DB_IP}",
-      "PASSWORD=${locals.DB_PASS}",
-      "DATABASE=${locals.DB_NAME}",
+      "USERNAME=${local.DB_USER}",
+      "IP=${local.DB_IP}",
+      "PASSWORD=${local.DB_PASS}",
+      "DATABASE=${local.DB_NAME}",
     ]
     only             = ["proxmox-iso.database","proxmox-iso.database42"]
   }
