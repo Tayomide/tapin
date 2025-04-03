@@ -8,6 +8,6 @@
 
 -- 10.110.%.% is essentially 10.110.0.0/16 the SQL wildcard is % not *
 -- $USERNAME and $USERPASS will be passed in via variables file
-GRANT SELECT,INSERT,UPDATE,CREATE,DELETE ON posts.* TO '${USERNAME}'@'${IP}' IDENTIFIED BY '${PASSWORD}'; 
+GRANT SELECT,INSERT,UPDATE,CREATE,DELETE ON ${DATABASE}.* TO '${USERNAME}'@'${IP}' IDENTIFIED BY '${PASSWORD}'; 
 
 FLUSH PRIVILEGES;
