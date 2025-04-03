@@ -2,27 +2,25 @@ import os
 import requests
 import jwt
 from datetime import datetime, timedelta, timezone
-from dotenv import load_dotenv
 from fastapi import FastAPI, Request, Response
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from jwt import PyJWTError
 from mysql import connector
 from models.delete_session import DeleteSession
+from utils.config import (
+  DATABASE_HOST as host,
+  DATABASE_USER as user,
+  DATABASE_PASSWORD as password,
+  DATABASE_NAME as database,
+  CLIENT_ID as client_id,
+  CLIENT_SECRET as client_secret,
+  REDIRECT_URI as redirect_uri,
+  SECRET_KEY as secret_key,
+  PORT,
+)
 
 from utils.create_session import create_db_session
-
-load_dotenv()
-
-# TODO: Change environment variables to all caps
-host= os.getenv("DATABASE_HOST")
-user=os.getenv("DATABASE_USER")
-password=os.getenv("DATABASE_PASSWORD")
-database=os.getenv("DATABASE_NAME")
-client_id=os.getenv("OAUTH_CLIENT_ID")
-client_secret=os.getenv("OAUTH_CLIENT_SECRET")
-redirect_uri=os.getenv("OAUTH_REDIRECT_URI")
-secret_key=os.getenv("SECRET_KEY")
 
 mydb = connector.connect(
   host=host,
@@ -32,16 +30,6 @@ mydb = connector.connect(
 )
 
 app = FastAPI()
-
-# Get the value of PORT, default to 8000 if not set
-port = os.getenv("PORT", "8000")
-
-# Check if the value can be converted to an integer
-try:
-  PORT = int(port)
-except ValueError:
-  print(f"Invalid PORT value: {port}, using default 8000")
-  PORT = 8000
 
 app.add_middleware(
   CORSMiddleware,
@@ -64,7 +52,7 @@ async def auth_middleware(request: Request, call_next):
     
     if session_id is not None:
       cursor = mydb.cursor()
-      cursor.execute("USE posts;")
+      cursor.execute(f"USE {database};")
       cursor.execute("SELECT * FROM sessions WHERE session_id = %s", (session_id,))
       session_tup = cursor.fetchone()
       if session_tup is not None:
@@ -205,7 +193,7 @@ async def get_sessions(request: Request):
     })
   user_id = request.state.session_data["user_id"]
   cursor = mydb.cursor()
-  cursor.execute("USE posts;")
+  cursor.execute(f"USE {database};")
   cursor.execute("SELECT * FROM sessions WHERE user_id = %s", (user_id,))
 
   session_tup = cursor.fetchall()
@@ -240,7 +228,7 @@ async def delete_session(delete_session: DeleteSession):
       )
 
     cursor = mydb.cursor()
-    cursor.execute("USE posts;")
+    cursor.execute(f"USE {database};")
     cursor.execute("DELETE FROM sessions WHERE session_id = %s", (session_id,))
     mydb.commit()
     cursor.close()

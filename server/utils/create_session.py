@@ -1,14 +1,9 @@
-import os
-from dotenv import load_dotenv
-
-load_dotenv()
-
-expires_in = int(os.getenv("EXPIRES_IN"))
+from utils.config import DATABASE_NAME as database, EXPIRES_IN as expires_in
 
 def create_db_session(mydb, email, device):
   # Create cursor
   cursor = mydb.cursor()
-  cursor.execute("USE posts;")
+  cursor.execute(f"USE {database};")
 
   # SQL query to insert session with RETURNING clause
   insert_query = """
