@@ -33,6 +33,14 @@ echo "Executing inline mysql -e to create user..."
 
 # These sample files are located in the mysql directory but need to be part of 
 # your private team repo
+
+cp --update=none .template-env .env
+
+sudo sed -i "s/USERNAME=/USERNAME=$USERNAME/" /home/vagrant/spring2025-team05/server/.env
+sudo sed -i "s/IP=/IP=$IP/" /home/vagrant/spring2025-team05/server/.env
+sudo sed -i "s/PASSWORD=/PASSWORD=$PASSWORD/" /home/vagrant/spring2025-team05/server/.env
+sudo sed -i "s/DATABASE=/DATABASE=$DATABASE/" /home/vagrant/spring2025-team05/server/.env
+
 envsubst < ./create-database.sql | mysql
 envsubst < ./create-table.sql | mysql
 envsubst < ./create-user-with-permissions.sql | mysql

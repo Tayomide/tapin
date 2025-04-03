@@ -30,3 +30,12 @@ sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -
 # This saves which files we have already started -- so pm2 will 
 # restart them at boot
 sudo -u vagrant pm2 save
+
+cp --update=none .template-env .env
+
+sudo sed -i "s/OAUTH_CLIENT_ID=/OAUTH_CLIENT_ID=$OAUTH_CLIENT_ID/" /home/vagrant/spring2025-team05/server/.env
+sudo sed -i "s/OAUTH_CLIENT_SECRET=/OAUTH_CLIENT_SECRET=$OAUTH_CLIENT_SECRET/" /home/vagrant/spring2025-team05/server/.env
+ESCAPED_OAUTH_REDIRECT_URI=$(printf '%s\n' "$OAUTH_REDIRECT_URI" | sed 's/[/&|]/\&/g')
+sudo sed -i "s/OAUTH_REDIRECT_URI=/OAUTH_REDIRECT_URI=$ESCAPED_OAUTH_REDIRECT_URI/" /home/vagrant/spring2025-team05/server/.env
+ESCAPED_BACKEND_HOST=$(printf '%s\n' "$BACKEND_HOST" | sed 's/[/&|]/\&/g')
+sudo sed -i "s/BACKEND_HOST=/BACKEND_HOST=$ESCAPED_BACKEND_HOST/" /home/vagrant/spring2025-team05/server/.env
