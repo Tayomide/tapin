@@ -15,19 +15,19 @@ pm_log_file   = "terraform-plugin-proxmox.log" # (Optional; defaults to terrafor
 # This is a variable to append to your cloud instances so they have a unique
 # FQDN -- this is needed for the gossip based DNS to work
 ###############################################################################
-frontend-yourinitials            = ""                     # initials to add to make unique systems
+frontend-yourinitials            = "team05m-prod-fe"                     # initials to add to make unique systems
 frontend-numberofvms             = 3                      # quantity of that template to launch
 frontend-desc                    = "Front end for production environment"                     # What is the purpose of the TF template
-backend-yourinitials             = ""                     # initials to add to make unique systems
+backend-yourinitials             = "team05m-prod-be"                     # initials to add to make unique systems
 backend-numberofvms              = 1                      # quantity of that template to launch
 backend-desc                     = "Backend for production environment"                     # What is the purpose of the TF template
-database-yourinitials            = ""                     # initials to add to make unique systems
+database-yourinitials            = "team05m-prod-db"                     # initials to add to make unique systems
 database-numberofvms             = 1                      # quantity of that template to launch
 database-desc                    = "Database for production environment"                     # What is the purpose of the TF template
-lb-yourinitials                  = ""                     # initials to add to make unique systems
+lb-yourinitials                  = "team05m-prod-lb"                     # initials to add to make unique systems
 lb-numberofvms                   = 1                      # quantity of that template to launch
 lb-desc                          = "Load balancer for production environment"                     # What is the purpose of the TF template
-lb-macaddr                       = ""                     # Class assigned mac address for a public IP for your lb
+lb-macaddr                       = "04:9F:15:00:00:12"                     # Class assigned mac address for a public IP for your lb
 consul-service-tag-contact-email = "your-hawk-email-here" # Used as part of the consul service definition as a tag that can be queried
 ###############################################################################
 # Name the template your created via Packer for Terraform to use to deploy
