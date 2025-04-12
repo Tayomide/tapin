@@ -17,6 +17,8 @@
     "electron": "^35.1.3"
   },
   "dependencies": {
+    "crypto": "^1.0.1",
+    "dotenv": "^16.5.0",
     "pcsclite": "^1.0.1"
   }
 }
