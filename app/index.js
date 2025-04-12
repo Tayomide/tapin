@@ -1,5 +1,7 @@
-const { app, BrowserWindow } = require("electron");
+const { app, BrowserWindow, ipcMain } = require("electron");
+require('dotenv').config();
 const { initializePCSC } = require("./scripts/pcsc.js");
+const { hashHex } = require("./scripts/hash.js");
 // include the Node.js 'path' module at the top of your file
 const path = require("node:path");
 
@@ -24,6 +26,7 @@ const createWindow = () => {
 app.whenReady().then(() => {
   createWindow();
   initializePCSC(mainWindow);
+  ipcMain.handle('hash-hex', (_, hex) => hashHex(hex));
 
   app.on("activate", () => {
     if (BrowserWindow.getAllWindows().length === 0) createWindow();
