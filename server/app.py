@@ -9,9 +9,6 @@ from jwt import PyJWTError
 from mysql import connector
 from models.delete_session import DeleteSession
 from utils.config import (
-  DATABASE_HOST as host,
-  DATABASE_USER as user,
-  DATABASE_PASSWORD as password,
   DATABASE_NAME as database,
   CLIENT_ID as client_id,
   CLIENT_SECRET as client_secret,
@@ -21,13 +18,7 @@ from utils.config import (
 )
 
 from utils.create_session import create_db_session
-
-mydb = connector.connect(
-  host=host,
-  user=user,
-  password=password,
-  port="3306"
-)
+from utils.get_connection import get_connection
 
 app = FastAPI()
 
@@ -51,6 +42,7 @@ async def auth_middleware(request: Request, call_next):
       session_id = None
     
     if session_id is not None:
+      mydb = get_connection()
       cursor = mydb.cursor()
       cursor.execute(f"USE {database};")
       cursor.execute("SELECT * FROM sessions WHERE session_id = %s", (session_id,))
@@ -78,6 +70,7 @@ async def auth_middleware(request: Request, call_next):
           mydb.commit()
 
       cursor.close()
+      mydb.close()
 
   try:
     value = request.state.session_valid
@@ -90,12 +83,6 @@ async def auth_middleware(request: Request, call_next):
 
 @app.get("/")
 async def root(request: Request):
-  # cursor = mydb.cursor()
-  # cursor.execute("USE posts;")
-  # cursor.execute("SELECT * from comment;")
-  # result = cursor.fetchall()
-  # for row in result:
-  #   print(row)
   if request.state.session_valid:
     return {"message": "Hello World", "session": request.state.session_data}
   return {"message": "Hello World"}
@@ -137,7 +124,7 @@ async def create_session(code: str, device_name: str):
     email = decoded["email"]
 
     try:
-      session_id = create_db_session(mydb, email, device_name)
+      session_id = create_db_session(email, device_name)
     except Exception as exc:
       return JSONResponse(
         content={
@@ -192,6 +179,7 @@ async def get_sessions(request: Request):
       "sessions": []
     })
   user_id = request.state.session_data["user_id"]
+  mydb = get_connection()
   cursor = mydb.cursor()
   cursor.execute(f"USE {database};")
   cursor.execute("SELECT * FROM sessions WHERE user_id = %s", (user_id,))
@@ -213,6 +201,7 @@ async def get_sessions(request: Request):
       "current_session": session_id == request.state.session_data["session_id"]
     })
   cursor.close()
+  mydb.close()
   return JSONResponse({
     "sessions": sessions
   })
@@ -226,12 +215,13 @@ async def delete_session(delete_session: DeleteSession):
         content={"error": "Session ID is required"},
         status_code=400
       )
-
+    mydb = get_connection()
     cursor = mydb.cursor()
     cursor.execute(f"USE {database};")
     cursor.execute("DELETE FROM sessions WHERE session_id = %s", (session_id,))
     mydb.commit()
     cursor.close()
+    mydb.close()
 
     return JSONResponse(
       content={"message": "Session deleted successfully", "deleted": True},

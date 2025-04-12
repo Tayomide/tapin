@@ -1,6 +1,8 @@
 from utils.config import DATABASE_NAME as database, EXPIRES_IN as expires_in
+from utils.get_connection import get_connection
 
-def create_db_session(mydb, email, device):
+def create_db_session(email, device):
+  mydb = get_connection()
   # Create cursor
   cursor = mydb.cursor()
   cursor.execute(f"USE {database};")
@@ -25,5 +27,6 @@ def create_db_session(mydb, email, device):
   # Commit changes and close connection
   mydb.commit()
   cursor.close()
+  mydb.close()
 
   return session_id if session_id is None else session_id[0]
