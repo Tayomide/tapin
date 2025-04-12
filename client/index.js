@@ -62,9 +62,7 @@ app.use(express.json())
 
 // 1️⃣ Redirect to Google OAuth
 app.get("/auth/google", (req, res) => {
-  const ua = uap(req.headers['user-agent']);
-  const googleAuthURL = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&scope=openid%20profile%20email&access_type=offline&prompt=consent`
-  res.redirect(googleAuthURL)
+  return res.redirect(`https://accounts.google.com/o/oauth2/v2/auth?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&scope=openid%20profile%20email&access_type=offline&prompt=consent`)
 })
 
 // 2️⃣ Handle Google OAuth Callback
