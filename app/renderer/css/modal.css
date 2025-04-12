@@ -1,0 +1,106 @@
+/* <div class="modal">
+  <div class="modal-content">
+    <p>Your hashed card ID doesn't exist in the database.</p>
+    <p>Would you like to link it?</p>
+    <input type="text" id="card-id" placeholder="Enter your hawk email here" />
+    <div class="modal-buttons">
+      <button id="link-card">Link</button>
+      <button id="cancel-link">Cancel</button>
+    </div>
+  </div>
+</div> */
+
+.modal {
+  display: flex;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 30em; /* Could be more or less, depending on screen size */
+  height: max-content;
+  border-radius: 0.3em;  
+}
+
+.modal-content h2 {
+  margin-bottom: 1em;
+  margin-bottom: 0.7em;
+}
+
+.modal-content p {
+  margin-bottom: 0.7em;
+  font-size: 1em;
+}
+
+.modal-content input#card-id {
+  outline: 0;
+  border: 1px solid black;
+  padding: 1em;
+  border-radius: 0.3em;
+  width: 100%;
+  margin-bottom: 1em;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 1em;
+}
+
+
+.modal-content .modal-buttons button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 0.8em 0;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1em;
+  cursor: pointer;
+  border-radius: 0.3em;
+  flex: 1;
+}
+.modal-content .modal-buttons button:hover {
+  background-color: #45a049;
+}
+
+.modal-content .modal-buttons button#cancel-link {
+  background-color: #d37259;
+}
+.modal-content .modal-buttons button#cancel-link:hover {
+  background-color: #af604c;
+}
+
+/* background: #a9a9cf;
+    outline: 0;
+    border: 0;
+    padding: 1em;
+    width: 40%;
+    border-radius: 0.3em; */
+
+/* The Close Button */
+/* .close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+} */
