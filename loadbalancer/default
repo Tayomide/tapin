@@ -13,6 +13,13 @@ server {
   index index.html;
   server_name _;
 
+  location /server/ {
+    proxy_pass http://server;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_ssl_server_name on;
+  }
+
   # Proxy all other requests to the backend server (Node.js)
   location / {
     proxy_pass http://backend; # Replace '127.0.0.1:3000' with your Node.js server details
