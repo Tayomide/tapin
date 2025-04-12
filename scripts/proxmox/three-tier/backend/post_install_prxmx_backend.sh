@@ -44,7 +44,7 @@ ESCAPED_SECRET_KEY=$(printf '%s\n' "$SECRET_KEY" | sed 's/[/&|]/\&/g')
 sudo sed -i "s/SECRET_KEY=/SECRET_KEY=$ESCAPED_SECRET_KEY/" /home/vagrant/spring2025-team05/server/.env
 sudo sed -i "s/EXPIRES_IN=/EXPIRES_IN=$EXPIRES_IN/" /home/vagrant/spring2025-team05/server/.env
 
-pm2 start "./venv/bin/python3 app.py" --name server
+sudo -u vagrant pm2 start "./venv/bin/python3 app.py" --name server
 
 sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u vagrant --hp /home/vagrant
 
