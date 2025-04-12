@@ -4,16 +4,32 @@
     <meta charset="UTF-8">
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="renderer/css/global.css">
+    <link rel="stylesheet" href="renderer/css/modal.css">
     <title>Hello World!</title>
   </head>
   <body>
-    <h1>Hello World!</h1>
-    <p>We are using Node.js <span id="node-version"></span>,
-    Chromium <span id="chrome-version"></span>,
-    and Electron <span id="electron-version"></span>.
-    </p>
+    <!-- Header -->
+    <header class="site-header">
+      <div class="header-content">
+        <div class="site-title">IDEA <span>SHOP</span></div>
+      </div>
+      <!-- Hero / Banner -->
+      <section class="hero-banner">
+        <h1>Welcome to the Kaplan Institute Idea Shop</h1>
+        <p>Your hub for innovation, prototyping, and design thinking!</p>
+      </section>
+    </header>
 
-    <p>A number is: <span id="uid"></span></p>
-    <script src="renderer/home.js"></script>
+    <!-- Main Content: Kiosk Check-In -->
+    <main>
+      <h1>Tap in to log in!</h1>
+    </main>
+    <!-- Footer -->
+    <footer class="site-footer">
+      <p>&#169; 2025 Kaplan Institute Idea Shop. All rights reserved.</p>
+    </footer>
+    <script src="renderer/js/home.js" type="module"></script>
   </body>
 </html>
