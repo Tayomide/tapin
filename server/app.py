@@ -228,6 +228,37 @@ async def is_logged_in(request: Request):
     "is_logged_in": request.state.session_valid
   })
 
+@app.get("/get_user")
+async def get_user(request: Request):
+  if not request.state.session_valid:
+    return JSONResponse({
+      "user": None
+    })
+  user_id = request.state.session_data["user_id"]
+  mydb = get_connection()
+  cursor = mydb.cursor()
+  cursor.execute(f"USE {database};")
+  cursor.execute("SELECT * FROM users WHERE user_id = %s", (user_id,))
+
+  user_tup = cursor.fetchone()
+  if user_tup is None:
+    return JSONResponse({
+      "user": None
+    })
+  (user_id, email, hashed_a_number, created_at, updated_at) = user_tup
+  cursor.close()
+  mydb.close()
+
+  return JSONResponse({
+    "user": {
+      "user_id": user_id,
+      "email": email,
+      "hashed_a_number": hashed_a_number,
+      "created_at": str(created_at),
+      "updated_at": str(updated_at)
+    }
+  })
+
 @app.get("/sessions")
 async def get_sessions(request: Request):
   if not request.state.session_valid:
