@@ -9,6 +9,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
   hashHex: (hex) => ipcRenderer.invoke('hash-hex', hex),
   setToken: (token) => ipcRenderer.invoke('set-token', token),
   getToken: () => ipcRenderer.invoke('get-token'),
+  getDeviceInfo: () => ipcRenderer.invoke('get-device-info'),
 });
 
 // window.addEventListener('DOMContentLoaded', () => {

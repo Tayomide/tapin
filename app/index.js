@@ -32,6 +32,11 @@ app.whenReady().then(() => {
   ipcMain.handle('hash-hex', (_, hex) => hashHex(hex));
   ipcMain.handle('get-token', () => store.get('token'));
   ipcMain.handle('set-token', (_, token) => store.set('token', token));
+  ipcMain.handle('get-device-info', () => {
+    const os = require('os');
+    const deviceInfo = `${os.type()} ${os.release()} ${os.arch()}`;
+    return deviceInfo;
+  })
 
   // Apply Content Security Policy (CSP)
   session.defaultSession.webRequest.onHeadersReceived((details, callback) => {
