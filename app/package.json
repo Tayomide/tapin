@@ -19,6 +19,7 @@
   "dependencies": {
     "crypto": "^1.0.1",
     "dotenv": "^16.5.0",
+    "electron-store": "^10.0.1",
     "pcsclite": "^1.0.1"
   }
 }
