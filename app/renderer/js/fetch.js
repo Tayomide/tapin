@@ -1,5 +1,5 @@
 async function fetchWithAuth(url, options = {}) {
-  const token = await window?.electronApi.getToken();
+  const token = await window?.electronAPI.getToken();
 
   const headers = {
     ...(options.headers || {}),
