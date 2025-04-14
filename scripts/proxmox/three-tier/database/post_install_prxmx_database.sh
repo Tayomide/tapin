@@ -6,6 +6,8 @@ sudo apt update
 sudo apt-get install -y mariadb-server-10.6
 sudo apt-get install -y gettext
 
+service mariadb start
+
 ## During the Terraform apply phase -- we will make some run time adjustments
 # to configure the database to listen on the meta-network interface only
 
@@ -36,12 +38,16 @@ echo "Executing inline mysql -e to create user..."
 
 cp --update=none .template-env .env
 
-sudo sed -i "s/USERNAME=/USERNAME=$USERNAME/" /home/vagrant/spring2025-team05/server/.env
-sudo sed -i "s/IP=/IP=$IP/" /home/vagrant/spring2025-team05/server/.env
-sudo sed -i "s/PASSWORD=/PASSWORD=$PASSWORD/" /home/vagrant/spring2025-team05/server/.env
-sudo sed -i "s/DATABASE=/DATABASE=$DATABASE/" /home/vagrant/spring2025-team05/server/.env
+sudo sed -i "s/USERNAME=/USERNAME=$USERNAME/" /home/vagrant/spring2025-team05/database/.env
+sudo sed -i "s/IP=/IP=$IP/" /home/vagrant/spring2025-team05/database/.env
+sudo sed -i "s/PASSWORD=/PASSWORD=$PASSWORD/" /home/vagrant/spring2025-team05/database/.env
+sudo sed -i "s/DATABASE=/DATABASE=$DATABASE/" /home/vagrant/spring2025-team05/database/.env
 
-envsubst < ./create-database.sql | mysql
-envsubst < ./create-table.sql | mysql
-envsubst < ./create-user-with-permissions.sql | mysql
-envsubst < ./insert-records.sql | mysql
+set -a
+source .env
+set +a
+
+envsubst < ./create-database.sql | sudo mysql
+envsubst < ./create-table.sql | sudo mysql
+envsubst < ./create-user-with-permissions.sql | sudo mysql
+envsubst < ./insert-records.sql | sudo mysql
