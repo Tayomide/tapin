@@ -238,7 +238,7 @@ async def get_user(request: Request):
   mydb = get_connection()
   cursor = mydb.cursor()
   cursor.execute(f"USE {database};")
-  cursor.execute("SELECT * FROM users WHERE user_id = %s", (user_id,))
+  cursor.execute("SELECT * FROM users WHERE id = %s", (user_id,))
 
   user_tup = cursor.fetchone()
   if user_tup is None:
