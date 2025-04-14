@@ -13,7 +13,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     return response.json()
   }).then(data => {
     console.log(data)
-    h1.innerText = `Welcome ${data.email}`
+    h1.innerText = `Welcome ${data.user?.email}`
   })
 
 })
