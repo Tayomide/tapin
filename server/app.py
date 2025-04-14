@@ -87,7 +87,7 @@ async def root(request: Request):
     return {"message": "Hello World", "session": request.state.session_data}
   return {"message": "Hello World"}
 
-@app.post("/create-card-session")
+@app.get("/create-card-session")
 async def create_card_session(hashed_a_number: str, device_name: str):
   try:
     session_id = create_card_session(hashed_a_number, device_name)
@@ -119,7 +119,7 @@ async def create_card_session(hashed_a_number: str, device_name: str):
       status_code=200
     )
 
-@app.post("/link-a-number")
+@app.get("/link-a-number")
 async def link_a_number(hashed_a_number: str, email: str):
   
   mydb = get_connection()
