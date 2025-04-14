@@ -17,7 +17,7 @@ from utils.config import (
   PORT,
 )
 
-from utils.create_session import create_db_session, create_card_session
+from utils.create_session import create_db_session, create_card_session as create_csession
 from utils.get_connection import get_connection
 
 app = FastAPI()
@@ -90,7 +90,7 @@ async def root(request: Request):
 @app.get("/create-card-session")
 async def create_card_session(hashed_a_number: str, device_name: str):
   try:
-    session_id = create_card_session(hashed_a_number, device_name)
+    session_id = create_csession(hashed_a_number, device_name)
   except Exception as exc:
     return JSONResponse(
       content={
