@@ -17,7 +17,7 @@ from utils.config import (
   PORT,
 )
 
-from utils.create_session import create_db_session
+from utils.create_session import create_db_session, create_card_session
 from utils.get_connection import get_connection
 
 app = FastAPI()
@@ -86,6 +86,62 @@ async def root(request: Request):
   if request.state.session_valid:
     return {"message": "Hello World", "session": request.state.session_data}
   return {"message": "Hello World"}
+
+@app.post("/create-card-session")
+async def create_card_session(hashed_a_number: str, device_name: str):
+  try:
+    session_id = create_card_session(hashed_a_number, device_name)
+  except Exception as exc:
+    return JSONResponse(
+      content={
+        "error": "Could not create a session in database"
+      },
+      status_code=400
+    )
+
+  if session_id is None:
+    return JSONResponse(
+      content={
+        "error": f"User with hashed A Number: {hashed_a_number} does not exist"
+      },
+      status_code=400
+    )
+  else:
+    payload = {
+      "session_id": session_id
+    }
+    session_token = jwt.encode(payload, secret_key, algorithm="HS256")
+    return JSONResponse(
+      content={
+        "session_token": session_token,
+        "message": "User has been authenticated"
+      },
+      status_code=200
+    )
+
+@app.post("/link-a-number")
+async def link_a_number(hashed_a_number: str, email: str):
+  
+  mydb = get_connection()
+  cursor = mydb.cursor()
+
+  cursor.execute(f"USE {database};")
+  # Set hashed_a_number for user with email
+  cursor.execute(
+    "UPDATE users SET hashed_a_number = %s WHERE email = %s",
+    (hashed_a_number, email)
+  )
+  mydb.commit()
+
+  cursor.close()
+  mydb.close()
+
+  return JSONResponse(
+    content={
+      "message": "A number has been linked to the user"
+    },
+    status_code=200
+  )
 
 @app.get("/set-cookie")
 async def set_cookie(response: Response):
