@@ -14,15 +14,15 @@ window?.electronAPI.onCardRemoved(() => {
 
 function createSession (cardHex, device_info) {
   fetch(`https://system61.rice.iit.edu/server/create-card-session?hashed_a_number=${cardHex}&device_name=${device_info}`)
-  .then(response => {
+  .then(async response => {
     if (!response.ok) createModal(cardHex)
-    return response.json()
-  })
-  .then(async data => {
-    console.log("Success:", data)
-    await window?.electronAPI.setToken(data.session_token)
-    // redirect to welcome page
-    window.location.href = 'welcome.html'
+    else {
+      const data = await response.json()
+      console.log("Success:", data)
+      await window?.electronAPI.setToken(data.session_token)
+      // redirect to welcome page
+      window.location.href = 'welcome.html'
+    }
   })
   .catch(error => {
     createModal(cardHex)
