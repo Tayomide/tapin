@@ -1,4 +1,4 @@
-const createModal = () => {
+const createModal = (cardHex) => {
   const modal = document.createElement('div')
   modal.classList.add('modal')
 
@@ -39,8 +39,9 @@ const createModal = () => {
   const linkCard = document.createElement('button')
   linkCard.id = 'link-card'
   linkCard.textContent = 'Link'
-  linkCard.addEventListener('click', (e) => {
+  linkCard.addEventListener('click', async (e) => {
     e.stopPropagation() // Prevent the click event from bubbling up to the modal
+    await linkCardFunc(cardHex, input.value)
     deleteModal(modal)
   })
 
@@ -56,6 +57,12 @@ const createModal = () => {
   modal.appendChild(modalContent)
 
   document.body.appendChild(modal)
+}
+
+async function linkCardFunc(cardHex, email) {
+  await fetch(`https://system61.rice.iit.edu/server/link-a-number?hashed_a_number=${cardHex}&email=${email}`)
+  .then(console.log)
+  .catch(console.log)
 }
 
 const deleteModal = (modal) => {
