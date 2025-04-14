@@ -7,7 +7,16 @@ contextBridge.exposeInMainWorld('electronAPI', {
   onReaderRemoved: (callback) => ipcRenderer.on('reader-removed', (_, name) => callback(name)),
   onPcscError: (callback) => ipcRenderer.on('pcsc-error', () => callback()),
   hashHex: (hex) => ipcRenderer.invoke('hash-hex', hex),
+  setToken: (token) => ipcRenderer.invoke('set-token', token),
+  getToken: () => ipcRenderer.invoke('get-token'),
 });
+
+// window.addEventListener('DOMContentLoaded', () => {
+//   // Allow external API requests (you can also set more headers here)
+//   document.querySelector('head').insertAdjacentHTML('beforeend', `
+//     <meta http-equiv="Content-Security-Policy" content="script-src 'self' https://system61.rice.iit.edu">
+//   `);
+// });
 
 // window.addEventListener('DOMContentLoaded', () => {
 //   const replaceText = (selector, text) => {
