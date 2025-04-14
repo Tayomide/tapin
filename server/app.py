@@ -245,7 +245,7 @@ async def get_user(request: Request):
     return JSONResponse({
       "user": None
     })
-  (user_id, email, hashed_a_number, created_at, updated_at) = user_tup
+  (user_id, hashed_a_number, email, created_at, updated_at) = user_tup
   cursor.close()
   mydb.close()
 
