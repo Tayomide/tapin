@@ -37,8 +37,8 @@ function createSession (cardHex, device_info) {
       await window?.electronAPI.setToken(data.session_token)
       // redirect to welcome page
       updateH1()
-      // Refresh the page 15 seconds after user logged in
-      setTimeout(refresh, 15000);
+      // Refresh the page 5 seconds after user logged in
+      setTimeout(refresh, 5000);
     }
   })
   .catch(error => {
