@@ -46,3 +46,7 @@ function createSession (cardHex, device_info) {
     console.log("Error: ", error)
   })
 }
+
+function refresh() {
+    window.location.reload();
+}
