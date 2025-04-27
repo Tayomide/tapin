@@ -12,6 +12,10 @@ contextBridge.exposeInMainWorld('electronAPI', {
   getDeviceInfo: () => ipcRenderer.invoke('get-device-info'),
 });
 
+contextBridge.exposeInMainWorld('env', {
+  SERVER: process.env.SERVER
+})
+
 // window.addEventListener('DOMContentLoaded', () => {
 //   // Allow external API requests (you can also set more headers here)
 //   document.querySelector('head').insertAdjacentHTML('beforeend', `
