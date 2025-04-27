@@ -6,7 +6,7 @@ from fastapi import FastAPI, Request, Response
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from jwt import PyJWTError
-from mysql import connector
+from models.assign_training import AssignTraining  # You'll need to create this simple Pydantic model
 from models.delete_session import DeleteSession
 from utils.config import (
   DATABASE_NAME as database,
@@ -45,32 +45,40 @@ async def auth_middleware(request: Request, call_next):
       mydb = get_connection()
       cursor = mydb.cursor()
       cursor.execute(f"USE {database};")
-      cursor.execute("SELECT * FROM sessions WHERE session_id = %s", (session_id,))
+      cursor.execute("""
+        SELECT 
+          sessions.session_id, sessions.user_id, sessions.user_device, sessions.expires_in, sessions.updated_at, users.is_admin
+        FROM sessions
+        JOIN users ON sessions.user_id = users.id
+        WHERE sessions.session_id = %s
+      """, (session_id,))
+
       session_tup = cursor.fetchone()
       if session_tup is not None:
-        (session_id, user_id, user_device, expires_in, created_at, updated_at) = session_tup
+        (session_id, user_id, user_device, expires_in, updated_at, is_admin) = session_tup
         updated_at = updated_at.replace(tzinfo=timezone.utc)
         expiration_time = updated_at + timedelta(seconds=expires_in)
         # Get current time using datetime
         if datetime.now(timezone.utc) < expiration_time:
           request.state.session_valid = True
           request.state.session_data = {
-              "session_id": session_id,
-              "user_id": user_id,
-              "user_device": user_device,
-              "expires_in": expires_in,
+            "session_id": session_id,
+            "user_id": user_id,
+            "user_device": user_device,
+            "expires_in": expires_in,
+            "is_admin": bool(is_admin)  # Make sure it's True/False (tinyint(1) in MySQL)
           }
           # Update updated_at to extend the sliding window
           cursor.execute(
-              "UPDATE sessions SET updated_at = CURRENT_TIMESTAMP WHERE session_id = %s;",
-              (session_id,)
+            "UPDATE sessions SET updated_at = CURRENT_TIMESTAMP WHERE session_id = %s;",
+            (session_id,)
           )
-
           # Commit the transaction to apply the changes
           mydb.commit()
 
       cursor.close()
       mydb.close()
+
 
   try:
     value = request.state.session_valid
@@ -320,6 +328,124 @@ async def delete_session(delete_session: DeleteSession):
       content={"error": f"An error occurred: {str(e)}"},
       status_code=500
     )
+
+@app.get("/trainings")
+async def get_trainings(request: Request):
+  if not request.state.session_valid:
+    return JSONResponse({"trainings": []})
+  
+  mydb = get_connection()
+  cursor = mydb.cursor()
+  cursor.execute(f"USE {database};")
+
+  query = """
+    SELECT training_id, name
+    FROM trainings;
+  """
+
+  cursor.execute(query)
+  training_records = cursor.fetchall()
+
+  trainings = []
+  for (training_id, name) in training_records:
+    trainings.append({
+      "name": name,
+      "id": training_id
+    })
+  
+  cursor.close()
+  mydb.close()
+  return JSONResponse({"trainings": trainings})
+
+
+@app.get("/user_trainings")
+async def get_user_trainings(request: Request):
+  if not request.state.session_valid:
+    return JSONResponse({"trainings": []})
+  
+  user_id = request.state.session_data["user_id"]
+  mydb = get_connection()
+  cursor = mydb.cursor()
+  cursor.execute(f"USE {database};")
+
+  query = """
+    SELECT trainings.name, trainings.description, user_trainings.status, user_trainings.assigned_at, user_trainings.completed_at
+    FROM user_trainings
+    JOIN trainings ON user_trainings.training_id = trainings.training_id
+    WHERE user_trainings.user_id = %s;
+  """
+  cursor.execute(query, (user_id,))
+  training_records = cursor.fetchall()
+
+  trainings = []
+  for (name, description, status, assigned_at, completed_at) in training_records:
+    trainings.append({
+      "name": name,
+      "description": description,
+      "status": status,
+      "assigned_at": str(assigned_at),
+      "completed_at": str(completed_at) if completed_at else None
+    })
+  
+  cursor.close()
+  mydb.close()
+  return JSONResponse({"trainings": trainings})
+
+@app.get("/is_admin")
+async def is_admin(request: Request):
+  if not request.state.session_valid:
+    return JSONResponse({"is_admin": False})
+
+  return JSONResponse({"is_admin": request.state.session_data["is_admin"]})
+
+@app.post("/assign_training")
+async def assign_training(request: Request, assign_training: AssignTraining):
+  if not request.state.session_valid:
+    return JSONResponse({"error": "Authentication required"}, status_code=401)
+
+  # Check if current user is admin
+  if not request.state.session_data["is_admin"]:
+    return JSONResponse({"error": "Admin privileges required"}, status_code=403)
+  
+  mydb = get_connection()
+  cursor = mydb.cursor()
+  cursor.execute(f"USE {database};")
+
+  # Determine target user
+  if assign_training.user_id:
+    target_user_id = assign_training.user_id
+  elif assign_training.user_email:
+    # Lookup user_id from email
+    cursor.execute("SELECT id FROM users WHERE email = %s", (assign_training.user_email,))
+    result = cursor.fetchone()
+    if result is None:
+      cursor.close()
+      mydb.close()
+      return JSONResponse({"error": "User with provided email not found"}, status_code=404)
+    target_user_id = result[0]
+  else:
+    cursor.close()
+    mydb.close()
+    return JSONResponse({"error": "You must provide either user_id or email"}, status_code=400)
+
+  training_id = assign_training.training_id
+  status = assign_training.status
+
+  # Upsert: update if exists, insert if not
+  cursor.execute("""
+    INSERT INTO user_trainings (user_id, training_id, status)
+    VALUES (%s, %s, %s)
+    ON DUPLICATE KEY UPDATE status = VALUES(status),
+                            assigned_at = CURRENT_TIMESTAMP,
+                            completed_at = CASE WHEN VALUES(status) = 'completed' THEN CURRENT_TIMESTAMP ELSE NULL END
+  """, (target_user_id, training_id, status))
+
+  mydb.commit()
+  cursor.close()
+  mydb.close()
+
+  return JSONResponse({"success": True, "message": "Training assigned/updated successfully"})
+
     
 if __name__ == "__main__":
   import uvicorn
