@@ -1,3 +1,5 @@
+import { fetchWithAuth } from "./fetch.js"
+
 const createModal = (cardHex) => {
   const modal = document.createElement('div')
   modal.classList.add('modal')
@@ -60,7 +62,7 @@ const createModal = (cardHex) => {
 }
 
 async function linkCardFunc(cardHex, email) {
-  await fetch(`https://system61.rice.iit.edu/server/link-a-number?hashed_a_number=${cardHex}&email=${email}`)
+  await fetchWithAuth(`/link-a-number?hashed_a_number=${cardHex}&email=${email}`)
   .then(console.log)
   .catch(console.log)
 }
