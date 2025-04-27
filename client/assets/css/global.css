@@ -130,6 +130,58 @@ header.site-header .hero-banner p {
   color: #f1f1f1;
 }
 
+#hamburger-menu {
+  font-size: 24px;
+  cursor: pointer;
+  padding: 15px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 2;
+  background-color: #333;
+  color: white;
+}
+
+#sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.3s;
+  padding-top: 60px;
+  z-index: 1;
+}
+
+#sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+#sidebar ul li {
+  padding: 10px 20px;
+}
+
+#sidebar ul li a {
+  text-decoration: none;
+  color: white;
+  display: block;
+  font-weight: bold;
+}
+
+#sidebar ul li a:hover {
+  background-color: #575757;
+}
+
+/* --- Highlight for current nav link --- */
+#sidebar ul li a.current-page {
+  font-weight: bold;
+  text-decoration: underline; /* Optional: makes it more obvious */
+  background-color: #575757;
+}
+
 /* --- Main Content --- */
 /* --- Main Kiosk Container --- */
 main {
