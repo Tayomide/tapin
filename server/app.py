@@ -247,13 +247,13 @@ async def get_user(request: Request):
   cursor = mydb.cursor()
   cursor.execute(f"USE {database};")
   cursor.execute("SELECT * FROM users WHERE id = %s", (user_id,))
-
+  
   user_tup = cursor.fetchone()
   if user_tup is None:
     return JSONResponse({
       "user": None
     })
-  (user_id, hashed_a_number, email, created_at, updated_at) = user_tup
+  (user_id, hashed_a_number, email, is_admin, created_at, updated_at) = user_tup
   cursor.close()
   mydb.close()
 
@@ -261,6 +261,7 @@ async def get_user(request: Request):
     "user": {
       "user_id": user_id,
       "email": email,
+      "is_admin": is_admin,
       "hashed_a_number": hashed_a_number,
       "created_at": str(created_at),
       "updated_at": str(updated_at)
