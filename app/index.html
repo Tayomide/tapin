@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; connect-src 'self' https://system61.rice.iit.edu;">
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; connect-src 'self' http://localhost:8000 https://system61.rice.iit.edu;"> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="renderer/css/global.css">
     <link rel="stylesheet" href="renderer/css/modal.css">
@@ -20,16 +20,29 @@
         <h1>Welcome to the Kaplan Institute Idea Shop</h1>
         <p>Your hub for innovation, prototyping, and design thinking!</p>
       </section>
+      <section>
+        <div id="hamburger-menu">&#9776;</div>
+        <nav id="sidebar">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="trainings.html">Trainings</a></li>
+            <li><a href="create_training.html">Create Training</a></li>
+            <li><a href="sessions.html">Sessions</a></li>
+          </ul>
+        </nav>
+      </section>
     </header>
 
     <!-- Main Content: Kiosk Check-In -->
     <main>
-      <h1>Tap in to log in!</h1>
+      <h1>Welcome: "Loading..."</h1>
     </main>
     <!-- Footer -->
     <footer class="site-footer">
       <p>&#169; 2025 Kaplan Institute Idea Shop. All rights reserved.</p>
     </footer>
-    <script src="renderer/js/home.js" type="module"></script>
+    <script src="renderer/js/global.js" type="module"></script>
+    <script src="renderer/js/index.js" type="module"></script>
   </body>
 </html>
