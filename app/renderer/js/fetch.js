@@ -7,7 +7,7 @@ async function fetchWithAuth(url, options = {}) {
     'Content-Type': 'application/json',
   };
 
-  return fetch(url, {
+  return fetch(`${window.env.SERVER}${url}`, {
     ...options,
     headers
   });
