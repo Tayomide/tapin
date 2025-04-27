@@ -45,7 +45,7 @@ app.whenReady().then(() => {
         ...details.responseHeaders,
         'Content-Security-Policy': [
           // Allow network connections to the external domain
-          'connect-src \'self\' https://system61.rice.iit.edu; default-src \'self\';',
+          'connect-src \'self\' http://localhost:8000 https://system61.rice.iit.edu; default-src \'self\';',
         ],
       }
     })
