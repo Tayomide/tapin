@@ -176,6 +176,82 @@ app.delete("/api/session", async (req, res) => {
 
 })
 
+app.get("/api/user_trainings", async (req, res) => {
+  try {
+    const result = await axios(`${FQDN}/user_trainings`, {
+      headers: {
+        "Authorization": `Bearer ${req.cookies?.session_token}`
+      }
+    }).then(res => res.data)
+    .catch(err => err.response?.data);
+
+    if (!result || !result.trainings) {
+      return res.status(500).json({ error: "Could not fetch trainings." });
+    }
+
+    return res.json({ trainings: result.trainings });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: "Server error" });
+  }
+});
+
+app.get("/api/trainings", async (req, res) => {
+  try {
+    const result = await axios(`${FQDN}/trainings`, {
+      headers: {
+        "Authorization": `Bearer ${req.cookies?.session_token}`
+      }
+    }).then(res => res.data)
+    .catch(err => err.response?.data);
+
+    if (!result || !result.trainings) {
+      return res.status(500).json({ error: "Could not fetch trainings." });
+    }
+
+    return res.json({ trainings: result.trainings });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: "Server error" });
+  }
+})
+
+app.post("/api/create-training", async (req, res) => {
+  const { training_id, user_email, status } = req.body;
+
+  if (!training_id || !user_email) {
+    return res.status(400).json({ error: "Training and user email are required." });
+  }
+
+  try {
+    // Second: Assign the training to the user by email
+    const assignTrainingResponse = await axios.post(`${FQDN}/assign_training`, {
+      user_email,
+      training_id,
+      status
+    }, {
+      headers: {
+        "Authorization": `Bearer ${req.cookies?.session_token}`,
+        "Content-Type": "application/json"
+      }
+    }).then(res => res.data)
+    .catch(err => err.response?.data);
+    console.log(JSON.stringify(assignTrainingResponse))
+
+    if (!assignTrainingResponse?.success) {
+      return res.status(500).json({ error: "Could not assign training to user." });
+    }
+
+    return res.json({ success: true, message: "Training created and assigned successfully." });
+
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: "Server error" });
+  }
+});
+
+
+
 // Handle 404 errors
 app.use((req, res) => {
   res.status(404).send('Page not found')
