@@ -12,8 +12,8 @@ document.getElementById('studentForm').addEventListener('submit', function(event
     const hasRequiredTraining = Math.random() < 0.5; // 50% chance of having training
 
     if (hasRequiredTraining) {
-        window.location.href = 'training_complete'; // Redirect to success page
+      window.location.href = 'training_complete'; // Redirect to success page
     } else {
-        window.location.href = 'training_needed'; // Redirect to training needed page
+      window.location.href = 'training_needed'; // Redirect to training needed page
     }
 });
