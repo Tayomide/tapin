@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Create New Training</title>
+  <link rel="stylesheet" href="/assets/css/global.css" />
+  <link rel="stylesheet" href="/assets/css/create_training.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-content">
+      <div class="site-title">IDEA <span>SHOP</span></div>
+    </div>
+    <section class="hero-banner">
+      <h1>Create a New Training</h1>
+      <p>Create a new training for students</p>
+    </section>
+  </header>
+  <main>
+    <form>
+      <div>
+        <label for="training">Training Name:</label>
+        <select id="training" required>
+          <option value="">Select a training...</option>
+          <!-- Trainings will be dynamically inserted here -->
+        </select>
+      </div>
+      <div>
+        <label for="email">User Email:</label>
+        <input type="text" id="email" required />
+      </div>
+      <div>
+        <label for="status">Training Status:</label>
+        <select id="status" required>
+          <option value="">Select a status...</option>
+          <option value="started">Started</option>
+          <option value="in-progress">In Progress</option>
+          <option value="completed">Completed</option>
+          <!-- Trainings will be dynamically inserted here -->
+        </select>
+      </div>
+      <button type="submit" class="btn">Create Training</button>
+    </form>
+  </main>
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>&#169; 2025 Kaplan Institute Idea Shop. All rights reserved.</p>
+  </footer>
+  <script src="/assets/js/create_training.js"></script>
+</body>
+</html>
