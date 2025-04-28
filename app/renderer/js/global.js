@@ -1,8 +1,6 @@
 import { createModal } from './modal.js'
 import { fetchWithAuth } from './fetch.js'
 
-window?.electronAPI.setToken("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXNzaW9uX2lkIjoiNzM0NjVjN2YtMjM0MC0xMWYwLTg1NmEtMDI0MmFjMTQwMDAyIn0.StEo0nxI9tCs3nZ0HQKQdL8bN3VYYgqUMBlbFoJm22c")
-
 window?.electronAPI.onCardInserted(async (uid) => {
   console.log('Card inserted:', uid)
   const hashedCardHex = await window?.electronAPI.hashHex(uid)
