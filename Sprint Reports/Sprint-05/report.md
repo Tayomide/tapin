@@ -10,6 +10,7 @@
 We created a web-based check-in system for the Idea Shop that uses ID cards and facial recognition for secure access control. The system allows users to scan their Hawk ID to log in and tracks their check-in/check-out with photo verification. Our solution integrates a MySQL backend, facial recognition through a camera system, and an automated login/logout flow to support efficient and secure access.
 
 ## Demonstration of Project Management Tool and Explanation of 25 Point Items
+https://3.basecamp.com/3649431/buckets/40911818/card_tables/8286111508
 We used **Basecamp** as our project management tool during Sprint-05. At the start of the sprint, the team assigned **25 total story points**, with tasks individually estimated on a 1–5 point difficulty scale based on complexity and effort. Each task was assigned to a specific team member, with primary responsibility clearly marked.  
 As Project Manager, I tracked task progress daily, verified updates through Basecamp and GitHub, and facilitated communication when blockers arose. Most tasks were successfully completed by the final week, ensuring we could demonstrate a functional application.
 
