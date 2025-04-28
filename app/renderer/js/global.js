@@ -24,7 +24,7 @@ function createSession (cardHex, device_info) {
       console.log("Success:", data)
       await window?.electronAPI.setToken(data.session_token)
       // redirect to welcome page
-      window.location.href = 'welcome.html'
+      window.location.href = 'index.html'
     }
   })
   .catch(error => {
